@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformation Session - Complete Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            color: #ffffff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            color: #b8b8b8;
+            font-size: 1.1em;
+        }
+
+        .form-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-hidden {
+            display: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ecdc4, #44a8b3);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .step-indicator {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .step-indicator h2 {
+            margin-bottom: 5px;
+        }
+
+        .step-indicator p {
+            color: #b8b8b8;
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stack-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .stack-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #4ecdc4;
+        }
+
+        .stack-card.selected {
+            background: rgba(78, 205, 196, 0.2);
+            border-color: #4ecdc4;
+            transform: scale(1.05);
+        }
+
+        .stack-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .stack-card .icon {
+            font-size: 1.5em;
+        }
+
+        .stack-card .description {
+            color: #b8b8b8;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .stack-card .steps {
+            color: #4ecdc4;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+
+        .stack-step {
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .question-prompt {
+            margin-bottom: 20px;
+        }
+
+        .question-prompt p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .previous-answer {
+            color: #4ecdc4;
+            font-style: italic;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 1em;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4ecdc4, #44a8b3);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(78, 205, 196, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .domain-selector {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .domain-option {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .domain-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .domain-option.selected {
+            background: rgba(78, 205, 196, 0.2);
+            border-color: #4ecdc4;
+        }
+
+        .completion-message {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .completion-message h2 {
+            color: #4ecdc4;
+            margin-bottom: 20px;
+        }
+
+        .completion-message p {
+            color: #b8b8b8;
+            margin-bottom: 30px;
+        }
+
+        .save-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(78, 205, 196, 0.9);
+            color: white;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .save-indicator.show {
+            opacity: 1;
+        }
+
+        .debug-console {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            color: #0f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            max-width: 300px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="save-indicator" id="saveIndicator">Auto-saved</div>
+    <div class="debug-console" id="debugConsole">Console initialized...</div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Transformation Session</h1>
+            <p>Transform your thoughts into action through structured processing</p>
+        </div>
+
+        <form id="stack-form">
+        <!-- Section 1: Session Type Selection -->
+        <div id="section-stack-selection" class="form-section">
+            <!-- User Information Section -->
+            <div style="margin-bottom: 40px; padding: 25px; background: rgba(255, 255, 255, 0.03); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 style="margin-bottom: 20px; color: #4ecdc4;">Session Information</h3>
+                
+                <!-- Error Message Container -->
+                <div id="error-message" style="display: none; background: rgba(255, 67, 54, 0.2); border: 1px solid #ff4336; 
+                                                color: #ff8a80; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
+                    <strong>Please fill in all required fields</strong>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; color: #b8b8b8; font-size: 0.9em;">
+                            Name <span style="color: #ff4336;">*</span>
+                        </label>
+                        <input type="text" id="user-name" name="user_name" required
+                               class="required-field"
+                               style="width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.05); 
+                                      border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; 
+                                      color: white;" placeholder="Your name (required)">
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; color: #b8b8b8; font-size: 0.9em;">
+                            Email <span style="color: #ff4336;">*</span>
+                        </label>
+                        <input type="email" id="user-email" name="user_email" required
+                               class="required-field"
+                               style="width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.05); 
+                                      border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; 
+                                      color: white;" placeholder="your@email.com (required)">
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; color: #b8b8b8; font-size: 0.9em;">
+                            Current Energy Level (1-10) <span style="color: #4ecdc4;">Optional</span>
+                        </label>
+                        <input type="number" id="energy-level" name="energy_level" min="1" max="10" 
+                               style="width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.05); 
+                                      border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; 
+                                      color: white;" placeholder="How's your energy? (1-10)">
+                    </div>
+                </div>
+                
+                <p style="margin-top: 15px; color: #b8b8b8; font-size: 0.85em;">
+                    <span style="color: #ff4336;">*</span> Required fields
+                </p>
+            </div>
+
+            <h2>Choose Your Stack Type</h2>
+            <p style="margin-bottom: 30px; color: #b8b8b8;">Select the stack that best matches your current need:</p>
+            
+            <div class="stack-grid">
+                <div class="stack-card" data-stack="prayer">
+                    <h3><span class="icon">🙏</span> Prayer Stack</h3>
+                    <div class="description">Connect with divine guidance and spiritual wisdom.</div>
+                    <div class="steps">9 transformative steps</div>
+                </div>
+                
+                <div class="stack-card" data-stack="war">
+                    <h3><span class="icon">⚔️</span> WAR/Idea Stack</h3>
+                    <div class="description">Transform ideas into actionable plans with measurable facts.</div>
+                    <div class="steps">13 strategic steps</div>
+                </div>
+                
+                <div class="stack-card" data-stack="discover">
+                    <h3><span class="icon">🔍</span> Discover Stack</h3>
+                    <div class="description">Extract wisdom from learning experiences.</div>
+                    <div class="steps">13 exploratory steps</div>
+                </div>
+                
+                <div class="stack-card" data-stack="angry">
+                    <h3><span class="icon">😤</span> Angry Stack</h3>
+                    <div class="description">Transform anger into strategic action.</div>
+                    <div class="steps">15 processing steps</div>
+                </div>
+                
+                <div class="stack-card" data-stack="happy">
+                    <h3><span class="icon">😊</span> Happy Stack</h3>
+                    <div class="description">Celebrate wins and extract positive lessons.</div>
+                    <div class="steps">8 celebration steps</div>
+                </div>
+                
+                <div class="stack-card" data-stack="open">
+                    <h3><span class="icon">🌟</span> Open Stack</h3>
+                    <div class="description">Freestyle format for custom processing.</div>
+                    <div class="steps">Flexible format</div>
+                </div>
+            </div>
+            
+            <input type="hidden" id="selected-stack" name="stack_type" value="">
+            
+            <div class="button-group">
+                <button type="button" class="btn-primary" id="start-stack-btn" disabled>
+                    Begin Session
+                </button>
+            </div>
+        </div>
+
+        <!-- PRAYER SESSION (9 steps) -->
+        <div id="section-prayer-stack" class="form-section section-hidden">
+            <div class="progress-bar">
+                <div class="progress-fill" id="prayer-progress"></div>
+            </div>
+            
+            <div class="step-indicator">
+                <h2>Prayer Session</h2>
+                <p>Step <span id="prayer-step-number">1</span> of 9</p>
+                <button type="button" class="btn-secondary" onclick="backToSelection()" style="margin-top: 10px;">
+                    ← Change Session Type
+                </button>
+            </div>
+
+            <!-- Step 1: Session Title -->
+            <div id="prayer-step-1" class="stack-step">
+                <div style="background: rgba(78, 205, 196, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                    <h3 style="color: #4ecdc4; margin-bottom: 15px;">🙏 Prayer Session Purpose</h3>
+                    <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
+                        The Prayer Session is designed to deepen your spiritual connection and align your actions with divine purpose. 
+                        This 9-step process helps you move from confusion to clarity through prayer and revelation.
+                    </p>
+                    <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
+                    <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
+                        <li>Facing difficult decisions requiring divine guidance</li>
+                        <li>Feeling disconnected from your spiritual purpose</li>
+                        <li>Needing strength to overcome challenges</li>
+                        <li>Expressing gratitude and seeking direction</li>
+                    </ul>
+                    <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
+                    <ul style="color: #4ecdc4; margin-left: 20px;">
+                        <li>✓ Clear divine insight or revelation</li>
+                        <li>✓ Renewed spiritual connection</li>
+                        <li>✓ Specific action steps aligned with your soul purpose</li>
+                        <li>✓ Peace and clarity about your situation</li>
+                    </ul>
+                </div>
+                
+                <div class="question-prompt">
+                    <p><strong>What are you going to title this prayer session?</strong></p>
+                </div>
+                <textarea name="prayer_title" placeholder="Give this prayer session a meaningful title..."></textarea>
+            </div>
+
+            <!-- Step 2: Prayer Subject -->
+            <div id="prayer-step-2" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>Who or what are you stacking?</strong></p>
+                    <p style="color: #b8b8b8;">What/who prompted you to pray - could be a person, situation, challenge, or blessing.</p>
+                </div>
+                <textarea name="prayer_subject" placeholder="Describe who or what brought you to prayer..."></textarea>
+            </div>
+
+            <!-- Step 3: Prayer Trigger -->
+            <div id="prayer-step-3" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p>About "<span class="previous-answer" id="prayer-subject-preview"></span>"</p>
+                    <p><strong>In this moment, why has this triggered you to pray?</strong></p>
+                </div>
+                <textarea name="prayer_trigger" placeholder="What about this situation calls you to prayer..."></textarea>
+            </div>
+
+            <!-- Step 4: Situation Story -->
+            <div id="prayer-step-4" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What is the story you're telling yourself, created by this trigger, about the situation?</strong></p>
+                </div>
+                <textarea name="prayer_story" placeholder="Share your interpretation of the circumstances..."></textarea>
+            </div>
+
+            <!-- Step 5: Emotional Response -->
+            <div id="prayer-step-5" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>Describe the single word feelings that arise for you when you tell yourself that story?</strong></p>
+                </div>
+                <textarea name="prayer_feelings" placeholder="Name your emotions (grateful, worried, excited, humble, etc.)..."></textarea>
+            </div>
+
+            <!-- Step 6: Want God to Know -->
+            <div id="prayer-step-6" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>Complete this multiple times: "I want GOD to know..."</strong></p>
+                    <p style="color: #b8b8b8;">Keep going until you've shared everything on your heart.</p>
+                </div>
+                <textarea name="prayer_want_god_know" style="min-height: 200px;" placeholder="I want GOD to know...
+I want GOD to know...
+I want GOD to know...
+I want GOD to know..."></textarea>
+            </div>
+
+            <!-- Step 7: Prayer -->
+            <div id="prayer-step-7" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>Dear GOD,</strong></p>
+                    <p style="color: #b8b8b8;">Speak directly to God. Express gratitude, ask for guidance, share concerns, seek strength.</p>
+                </div>
+                <textarea name="prayer_to_god" style="min-height: 250px;" placeholder="Dear GOD..."></textarea>
+            </div>
+
+            <!-- Step 8: Life Lesson -->
+            <div id="prayer-step-8" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What is the singular lesson on life you are taking from this prayer session?</strong></p>
+                </div>
+                <textarea name="prayer_lesson" placeholder="The key insight or principle I'm learning..."></textarea>
+            </div>
+
+            <!-- Step 9: Revelation & Commitment -->
+            <div id="prayer-step-9" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What is the most significant revelation or insight you are leaving this prayer session with, and why do you feel that way?</strong></p>
+                </div>
+                <textarea name="prayer_revelation" placeholder="My divine insight or understanding..."></textarea>
+                
+                <div class="question-prompt" style="margin-top: 20px;">
+                    <p><strong>What immediate actions are you committed to taking leaving this session?</strong></p>
+                </div>
+                <textarea name="prayer_commitment" placeholder="I commit to..."></textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-secondary" onclick="previousStep('prayer')" id="prayer-prev-btn" style="display: none;">Previous</button>
+                <button type="button" class="btn-primary" onclick="nextStep('prayer')" id="prayer-next-btn">Next Step</button>
+            </div>
+        </div>
+
+        <!-- WAR/IDEA STACK (7 steps) -->
+        <div id="section-war-stack" class="form-section section-hidden">
+            <div class="progress-bar">
+                <div class="progress-fill" id="war-progress"></div>
+            </div>
+            
+            <div class="step-indicator">
+                <h2>WAR/Idea Stack</h2>
+                <p>Step <span id="war-step-number">1</span> of 7</p>
+                <button type="button" class="btn-secondary" onclick="backToSelection()" style="margin-top: 10px;">
+                    ← Change Stack Type
+                </button>
+            </div>
+
+            <!-- Step 1: Title -->
+            <div id="war-step-1" class="stack-step">
+                <div style="background: rgba(255, 107, 107, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                    <h3 style="color: #ff6b6b; margin-bottom: 15px;">⚔️ WAR/Idea Session Purpose</h3>
+                    <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
+                        The WAR Session transforms productive ideas into actionable battle plans. This 7-step process helps you 
+                        evaluate opportunities, identify obstacles, and create measurable facts (action steps) to execute your vision.
+                    </p>
+                    <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
+                    <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
+                        <li>You have a new business or life idea to develop</li>
+                        <li>Need to turn inspiration into concrete action</li>
+                        <li>Want to evaluate if an opportunity is worth pursuing</li>
+                        <li>Ready to overcome obstacles and execute</li>
+                    </ul>
+                    <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
+                    <ul style="color: #ff6b6b; margin-left: 20px;">
+                        <li>✓ Clear evaluation of your idea's potential</li>
+                        <li>✓ Three specific, measurable action steps (FACTS)</li>
+                        <li>✓ Identified obstacles with solutions</li>
+                        <li>✓ Commitment to immediate execution</li>
+                    </ul>
+                </div>
+                
+                <div class="question-prompt">
+                    <p><strong>What are you going to title this WAR/Idea Session?</strong></p>
+                </div>
+                <textarea name="war_title" placeholder="Give your idea a powerful title..."></textarea>
+            </div>
+
+            <!-- Step 2: Source -->
+            <div id="war-step-2" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p>Your idea: "<span class="previous-answer" id="war-title-preview"></span>"</p>
+                    <p><strong>Who/What are you stacking?</strong></p>
+                    <p style="color: #b8b8b8;">Person, situation, or source that sparked the idea.</p>
+                </div>
+                <textarea name="war_source" placeholder="What or who triggered this idea..."></textarea>
+            </div>
+
+            <!-- Step 3: Idea Description -->
+            <div id="war-step-3" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p>Based on "<span class="previous-answer" id="war-source-preview"></span>"</p>
+                    <p><strong>In this moment, what Idea has this activated in you?</strong></p>
+                </div>
+                <textarea name="war_idea" placeholder="Describe the specific idea or opportunity..."></textarea>
+            </div>
+
+            <!-- Step 4: Story -->
+            <div id="war-step-4" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What is the story you're telling yourself about this new idea?</strong></p>
+                </div>
+                <textarea name="war_story" placeholder="Your interpretation and vision for this idea..."></textarea>
+            </div>
+
+            <!-- Step 5: Feelings -->
+            <div id="war-step-5" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>Describe the single word feelings that arise for you when you tell yourself that story?</strong></p>
+                </div>
+                <textarea name="war_feelings" placeholder="Primary emotions (excited, curious, motivated, etc.)..."></textarea>
+            </div>
+
+            <!-- Step 6: Benefits -->
+            <div id="war-step-6" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>If this productive idea is executed on, what are the positive benefits to your world and those you are connected to?</strong></p>
+                </div>
+                <textarea name="war_benefits" placeholder="How success would impact you and others..."></textarea>
+            </div>
+
+            <!-- Step 7: Action Plan -->
+            <div id="war-step-7" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What are your first THREE measurable FACTS (action steps)?</strong></p>
+                    <p style="color: #b8b8b8;">List specific, actionable steps with potential obstacles and solutions.</p>
+                </div>
+                <textarea name="war_facts" style="min-height: 250px;" placeholder="FACT 1: [Specific action]
+Why it's important: 
+Potential obstacles: 
+How to overcome: 
+
+FACT 2: [Specific action]
+Why it's important: 
+Potential obstacles: 
+How to overcome: 
+
+FACT 3: [Specific action]
+Why it's important: 
+Potential obstacles: 
+How to overcome: "></textarea>
+                
+                <div class="question-prompt" style="margin-top: 20px;">
+                    <p><strong>What immediate actions are you committed to taking?</strong></p>
+                </div>
+                <textarea name="war_commitment" placeholder="Your immediate next steps..."></textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-secondary" onclick="previousStep('war')" id="war-prev-btn" style="display: none;">Previous</button>
+                <button type="button" class="btn-primary" onclick="nextStep('war')" id="war-next-btn">Next Step</button>
+            </div>
+        </div>
+
+        <!-- DISCOVER STACK (5 steps) -->
+        <div id="section-discover-stack" class="form-section section-hidden">
+            <div class="progress-bar">
+                <div class="progress-fill" id="discover-progress"></div>
+            </div>
+            
+            <div class="step-indicator">
+                <h2>Discover Stack</h2>
+                <p>Step <span id="discover-step-number">1</span> of 5</p>
+                <button type="button" class="btn-secondary" onclick="backToSelection()" style="margin-top: 10px;">
+                    ← Change Stack Type
+                </button>
+            </div>
+
+            <!-- Step 1: Title -->
+            <div id="discover-step-1" class="stack-step">
+                <div style="background: rgba(255, 193, 7, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                    <h3 style="color: #ffc107; margin-bottom: 15px;">🔍 Discovery Session Purpose</h3>
+                    <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
+                        The Discovery Session extracts wisdom from learning experiences and turns insights into practical application. 
+                        This 5-step process helps you capture revelations from books, training, conversations, or personal experiences.
+                    </p>
+                    <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
+                    <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
+                        <li>You've learned something significant from a book or course</li>
+                        <li>Had an important realization or "aha" moment</li>
+                        <li>Want to apply new knowledge to your life</li>
+                        <li>Need to process and integrate learning</li>
+                    </ul>
+                    <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
+                    <ul style="color: #ffc107; margin-left: 20px;">
+                        <li>✓ Clear articulation of your discovery</li>
+                        <li>✓ Understanding of why it matters to you</li>
+                        <li>✓ Practical application to your Core 4 domains</li>
+                        <li>✓ Immediate action steps to implement</li>
+                    </ul>
+                </div>
+                
+                <div class="question-prompt">
+                    <p><strong>What are you going to title this Discovery Session?</strong></p>
+                </div>
+                <textarea name="discover_title" placeholder="Name this discovery session..."></textarea>
+            </div>
+
+            <!-- Step 2: Source -->
+            <div id="discover-step-2" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p>Discovery: "<span class="previous-answer" id="discover-title-preview"></span>"</p>
+                    <p><strong>What resource(s) were you studying today?</strong></p>
+                    <p style="color: #b8b8b8;">Book, course, person, experience, or situation that provided the insight.</p>
+                </div>
+                <textarea name="discover_source" placeholder="Book, course, person, experience..."></textarea>
+            </div>
+
+            <!-- Step 3: Discovery Content -->
+            <div id="discover-step-3" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p>From "<span class="previous-answer" id="discover-source-preview"></span>"</p>
+                    <p><strong>What did you discover during your study session?</strong></p>
+                    <p style="color: #b8b8b8;">The specific insight, principle, or revelation you gained.</p>
+                </div>
+                <textarea name="discover_content" placeholder="The specific insight or revelation..."></textarea>
+            </div>
+
+            <!-- Step 4: Story & Significance -->
+            <div id="discover-step-4" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What is the story you're telling yourself about this discovery?</strong></p>
+                </div>
+                <textarea name="discover_story" placeholder="How you interpret and relate to this discovery..."></textarea>
+                
+                <div class="question-prompt" style="margin-top: 20px;">
+                    <p><strong>Why do you feel this specific discovery was significant?</strong></p>
+                </div>
+                <textarea name="discover_significance" placeholder="Why this insight matters to you..."></textarea>
+            </div>
+
+            <!-- Step 5: Application -->
+            <div id="discover-step-5" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What is the singular, simple lesson on life you're learning from this Discovery Session?</strong></p>
+                </div>
+                <textarea name="discover_lesson" placeholder="The essential principle or truth you've learned..."></textarea>
+                
+                <div class="question-prompt" style="margin-top: 20px;">
+                    <p><strong>What immediate actions are you committed to taking leaving this session?</strong></p>
+                </div>
+                <textarea name="discover_commitment" placeholder="Specific steps you'll take to implement this discovery..."></textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-secondary" onclick="previousStep('discover')" id="discover-prev-btn" style="display: none;">Previous</button>
+                <button type="button" class="btn-primary" onclick="nextStep('discover')" id="discover-next-btn">Next Step</button>
+            </div>
+        </div>
+
+        <!-- ANGRY STACK (8 steps) -->
+        <div id="section-angry-stack" class="form-section section-hidden">
+            <div class="progress-bar">
+                <div class="progress-fill" id="angry-progress"></div>
+            </div>
+            
+            <div class="step-indicator">
+                <h2>Angry Stack</h2>
+                <p>Step <span id="angry-step-number">1</span> of 8</p>
+                <button type="button" class="btn-secondary" onclick="backToSelection()" style="margin-top: 10px;">
+                    ← Change Stack Type
+                </button>
+            </div>
+
+            <!-- Step 1: Title -->
+            <div id="angry-step-1" class="stack-step">
+                <div style="background: rgba(244, 67, 54, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                    <h3 style="color: #f44336; margin-bottom: 15px;">😤 Anger Processing Purpose</h3>
+                    <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
+                        The Anger Processing session transforms rage and irritation into strategic action. This 8-step process helps you 
+                        process negative emotions, separate facts from feelings, and create empowering narratives that serve your goals.
+                    </p>
+                    <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
+                    <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
+                        <li>Someone or something has triggered your anger</li>
+                        <li>Feeling frustrated and need clarity</li>
+                        <li>Want to convert destructive emotions into productive action</li>
+                        <li>Need to reframe a situation strategically</li>
+                    </ul>
+                    <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
+                    <ul style="color: #f44336; margin-left: 20px;">
+                        <li>✓ Release of emotional charge</li>
+                        <li>✓ Clear distinction between facts and feelings</li>
+                        <li>✓ New empowering story that serves you</li>
+                        <li>✓ Strategic action plan from a place of power</li>
+                    </ul>
+                </div>
+                
+                <div class="question-prompt">
+                    <p><strong>What are you going to title this processing session?</strong></p>
+                </div>
+                <textarea name="angry_title" placeholder="Name this processing session..."></textarea>
+            </div>
+
+            <!-- Step 2: Trigger Person -->
+            <div id="angry-step-2" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p>Processing: "<span class="previous-answer" id="angry-title-preview"></span>"</p>
+                    <p><strong>Who has triggered you to feel angry?</strong></p>
+                </div>
+                <textarea name="angry_person" placeholder="Name of person who triggered you..."></textarea>
+            </div>
+
+            <!-- Step 3: Current Story -->
+            <div id="angry-step-3" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p>About "<span class="previous-answer" id="angry-person-preview"></span>"</p>
+                    <p><strong>What is the story you're telling yourself right now about what happened?</strong></p>
+                </div>
+                <textarea name="angry_story" placeholder="Your current interpretation of the situation..."></textarea>
+            </div>
+
+            <!-- Step 4: Negative Feelings -->
+            <div id="angry-step-4" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What are the negative feelings that you're experiencing because of this story?</strong></p>
+                </div>
+                <textarea name="angry_feelings" placeholder="List your current emotions - anger, frustration, etc..."></textarea>
+            </div>
+
+            <!-- Step 5: Facts -->
+            <div id="angry-step-5" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What are the FACTS (without FEELINGS) about the situation?</strong></p>
+                    <p style="color: #b8b8b8;">Objective description of what actually happened.</p>
+                </div>
+                <textarea name="angry_facts" placeholder="Just the facts, no interpretation..."></textarea>
+            </div>
+
+            <!-- Step 6: True Desire -->
+            <div id="angry-step-6" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>Beyond the trigger of this situation, what do you truly want for YOU?</strong></p>
+                </div>
+                <textarea name="angry_desire" placeholder="What you actually want to achieve or experience..."></textarea>
+            </div>
+
+            <!-- Step 7: Strategic Story -->
+            <div id="angry-step-7" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What is a more strategic story that you could create to assure you get what you truly want?</strong></p>
+                </div>
+                <textarea name="angry_new_story" placeholder="A new interpretation that serves your goals..."></textarea>
+                
+                <div class="question-prompt" style="margin-top: 20px;">
+                    <p><strong>How does this new strategic story make you feel?</strong></p>
+                </div>
+                <textarea name="angry_new_feelings" placeholder="Emotional response to your new perspective..."></textarea>
+            </div>
+
+            <!-- Step 8: Insight & Action -->
+            <div id="angry-step-8" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What is the singular, simple lesson on life you're learning from this anger processing?</strong></p>
+                </div>
+                <textarea name="angry_lesson" placeholder="Core lesson for life application..."></textarea>
+                
+                <div class="question-prompt" style="margin-top: 20px;">
+                    <p><strong>What action do you feel called to take?</strong></p>
+                </div>
+                <textarea name="angry_action" placeholder="Specific action you'll take as a result..."></textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-secondary" onclick="previousStep('angry')" id="angry-prev-btn" style="display: none;">Previous</button>
+                <button type="button" class="btn-primary" onclick="nextStep('angry')" id="angry-next-btn">Next Step</button>
+            </div>
+        </div>
+
+        <!-- HAPPY STACK (8 steps) -->
+        <div id="section-happy-stack" class="form-section section-hidden">
+            <div class="progress-bar">
+                <div class="progress-fill" id="happy-progress"></div>
+            </div>
+            
+            <div class="step-indicator">
+                <h2>Happy Stack</h2>
+                <p>Step <span id="happy-step-number">1</span> of 8</p>
+                <button type="button" class="btn-secondary" onclick="backToSelection()" style="margin-top: 10px;">
+                    ← Change Stack Type
+                </button>
+            </div>
+
+            <!-- Step 1: Title -->
+            <div id="happy-step-1" class="stack-step">
+                <div style="background: rgba(76, 175, 80, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                    <h3 style="color: #4caf50; margin-bottom: 15px;">😊 Celebration Session Purpose</h3>
+                    <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
+                        The Celebration Session helps you celebrate wins and extract wisdom from positive experiences. This 8-step process 
+                        ensures you learn from success, maintain momentum, and amplify what's working in your life.
+                    </p>
+                    <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
+                    <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
+                        <li>You've achieved a win or breakthrough</li>
+                        <li>Something wonderful has happened</li>
+                        <li>Want to maintain positive momentum</li>
+                        <li>Need to remind yourself of your progress</li>
+                    </ul>
+                    <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
+                    <ul style="color: #4caf50; margin-left: 20px;">
+                        <li>✓ Deep appreciation of your success</li>
+                        <li>✓ Clear understanding of what created the win</li>
+                        <li>✓ Lessons to replicate success</li>
+                        <li>✓ Renewed energy and motivation</li>
+                    </ul>
+                </div>
+                
+                <div class="question-prompt">
+                    <p><strong>What are you going to title this Celebration Session?</strong></p>
+                </div>
+                <textarea name="happy_title" placeholder="Name this celebration..."></textarea>
+            </div>
+
+            <!-- Step 2: Happy Trigger -->
+            <div id="happy-step-2" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p>Celebrating: "<span class="previous-answer" id="happy-title-preview"></span>"</p>
+                    <p><strong>What happened and Who triggered you to feel happy?</strong></p>
+                </div>
+                <textarea name="happy_trigger" placeholder="Describe the positive event and person involved..."></textarea>
+            </div>
+
+            <!-- Step 3: Current Story -->
+            <div id="happy-step-3" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What is the story you're telling yourself right now about what happened?</strong></p>
+                </div>
+                <textarea name="happy_story" placeholder="Your interpretation of the positive situation..."></textarea>
+            </div>
+
+            <!-- Step 4: Positive Feelings -->
+            <div id="happy-step-4" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What are the positive feelings you're experiencing because of this story?</strong></p>
+                </div>
+                <textarea name="happy_feelings" placeholder="List emotions like happiness, excitement, appreciation, etc..."></textarea>
+            </div>
+
+            <!-- Step 5: Inspired Actions -->
+            <div id="happy-step-5" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What initial desires or actions do you notice rise for you with these feelings?</strong></p>
+                </div>
+                <textarea name="happy_actions" placeholder="What you want to do as a result of feeling good..."></textarea>
+            </div>
+
+            <!-- Step 6: Life Lesson -->
+            <div id="happy-step-6" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What is the singular simple lesson on life you're learning from this celebration?</strong></p>
+                </div>
+                <textarea name="happy_lesson" placeholder="Key insight from this positive experience..."></textarea>
+            </div>
+
+            <!-- Step 7: Evidence -->
+            <div id="happy-step-7" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What evidence do you have to support this story as absolutely true?</strong></p>
+                </div>
+                <textarea name="happy_evidence" placeholder="Facts that confirm your positive interpretation..."></textarea>
+            </div>
+
+            <!-- Step 8: Final Insights -->
+            <div id="happy-step-8" class="stack-step section-hidden">
+                <div class="question-prompt">
+                    <p><strong>What are the FINAL INSIGHTS or REVELATIONS that you're leaving this session with?</strong></p>
+                </div>
+                <textarea name="happy_insights" placeholder="Deeper understanding and takeaways..."></textarea>
+                
+                <div class="question-prompt" style="margin-top: 20px;">
+                    <p><strong>What immediate actions are you committed to taking?</strong></p>
+                </div>
+                <textarea name="happy_commitment" placeholder="How you'll maintain this momentum..."></textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-secondary" onclick="previousStep('happy')" id="happy-prev-btn" style="display: none;">Previous</button>
+                <button type="button" class="btn-primary" onclick="nextStep('happy')" id="happy-next-btn">Next Step</button>
+            </div>
+        </div>
+
+        <!-- OPEN STACK -->
+        <div id="section-open-stack" class="form-section section-hidden">
+            <div class="step-indicator">
+                <h2>Open Stack</h2>
+                <p>Freestyle Format</p>
+                <button type="button" class="btn-secondary" onclick="backToSelection()" style="margin-top: 10px;">
+                    ← Change Stack Type
+                </button>
+            </div>
+
+            <div class="stack-step">
+                <div style="background: rgba(156, 39, 176, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                    <h3 style="color: #9c27b0; margin-bottom: 15px;">🌟 Open Format Purpose</h3>
+                    <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
+                        The Open Format is your freestyle session for custom processing. This flexible approach lets you create 
+                        your own structure for reflection, analysis, or any situation that doesn't fit the other session types.
+                    </p>
+                    <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
+                    <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
+                        <li>Need a "Working/Not Working" analysis</li>
+                        <li>Want to do weekly or monthly reflection</li>
+                        <li>Creating custom gratitude or growth sessions</li>
+                        <li>Exploring something unique to your situation</li>
+                    </ul>
+                    <p style="color: #ffffff; margin-bottom: 10px;"><strong>Popular Formats:</strong></p>
+                    <ul style="color: #9c27b0; margin-left: 20px;">
+                        <li>✓ Working/Not Working Analysis</li>
+                        <li>✓ Start/Stop/Continue Framework</li>
+                        <li>✓ Weekly Wins & Lessons</li>
+                        <li>✓ Gratitude and Growth Reflection</li>
+                        <li>✓ Core 4 Domain Review</li>
+                    </ul>
+                </div>
+                
+                <div class="question-prompt">
+                    <p><strong>What are you going to title this Open Session?</strong></p>
+                </div>
+                <textarea name="open_title" placeholder="Name your freestyle session..."></textarea>
+                
+                <div class="question-prompt" style="margin-top: 30px;">
+                    <p><strong>Time to freestyle your own session. 3-2-1 off you go...</strong></p>
+                    <p style="color: #b8b8b8; margin-top: 10px;">Choose from the templates below or create your own structure:</p>
+                </div>
+                <textarea name="open_content" style="min-height: 400px;" placeholder="TEMPLATE 1: Working/Not Working
+=====================================
+WORKING:
+- 
+- 
+- 
+
+NOT WORKING:
+- 
+- 
+- 
+
+ACTIONS TO AMPLIFY WHAT'S WORKING:
+- 
+- 
+
+ACTIONS TO FIX WHAT'S NOT:
+- 
+- 
+
+
+TEMPLATE 2: Weekly Reflection
+=====================================
+THIS WEEK'S WINS:
+- 
+- 
+
+KEY LESSONS LEARNED:
+- 
+- 
+
+NEXT WEEK'S FOCUS:
+- 
+- 
+
+
+Or create your own structure..."></textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
+                <button type="button" class="btn-primary" onclick="completeOpenStack()">Complete Stack</button>
+            </div>
+        </div>
+
+        <!-- Other stack sections would follow the same pattern... -->
+        <!-- I'll include a shortened version for demonstration -->
+
+        <!-- Completion Section -->
+        <div id="section-completion" class="form-section section-hidden">
+            <div class="completion-message">
+                <h2>🎉 Session Complete!</h2>
+                <p>Your session has been recorded and will be processed.</p>
+                <p>Thank you for taking the time to process and grow.</p>
+                
+                <div class="button-group" style="justify-content: center;">
+                    <button type="button" class="btn-primary" onclick="startNewStack()">Start New Session</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+
+    <script>
+        // Debug console logging
+        function debugLog(message) {
+            console.log(message);
+            const debugConsole = document.getElementById('debugConsole');
+            const timestamp = new Date().toLocaleTimeString();
+            debugConsole.innerHTML += `<br>[${timestamp}] ${message}`;
+            debugConsole.scrollTop = debugConsole.scrollHeight;
+        }
+
+        // Stack configurations
+        const stackConfigs = {
+            prayer: { steps: 9, section: 'prayer-stack' },
+            war: { steps: 7, section: 'war-stack' },
+            discover: { steps: 5, section: 'discover-stack' },
+            angry: { steps: 8, section: 'angry-stack' },
+            happy: { steps: 8, section: 'happy-stack' },
+            open: { steps: 1, section: 'open-stack' }
+        };
+
+        let currentStack = null;
+        let currentStep = {};
+
+        // Save indicator
+        function showSaveIndicator() {
+            const indicator = document.getElementById('saveIndicator');
+            indicator.classList.add('show');
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            debugLog('Page loaded - initializing...');
+            
+            // Initialize all step trackers
+            Object.keys(stackConfigs).forEach(stack => {
+                currentStep[stack] = 1;
+            });
+
+            // Load saved data from localStorage
+            loadSavedData();
+
+            // Stack card selection
+            document.querySelectorAll('.stack-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    document.querySelectorAll('.stack-card').forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    currentStack = card.dataset.stack;
+                    document.getElementById('selected-stack').value = currentStack;
+                    document.getElementById('start-stack-btn').disabled = false;
+                    debugLog(`Selected stack: ${currentStack}`);
+                });
+            });
+
+            // Start stack button
+            document.getElementById('start-stack-btn').addEventListener('click', () => {
+                // Validate required fields first
+                if (!validateRequiredFields()) {
+                    return;
+                }
+                
+                if (currentStack) {
+                    debugLog(`Starting ${currentStack} stack`);
+                    document.getElementById('section-stack-selection').classList.add('section-hidden');
+                    
+                    // Show the selected stack section
+                    const sectionId = `section-${stackConfigs[currentStack].section}`;
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.classList.remove('section-hidden');
+                        currentStep[currentStack] = 1;
+                        updateProgress(currentStack);
+                        debugLog(`Showing section: ${sectionId}`);
+                    } else {
+                        debugLog(`ERROR: Section not found: ${sectionId}`);
+                    }
+                }
+            });
+            
+            // Validate required fields on input
+            document.querySelectorAll('.required-field').forEach(field => {
+                field.addEventListener('blur', () => {
+                    validateField(field);
+                });
+                
+                field.addEventListener('input', () => {
+                    // Clear error state when user starts typing
+                    field.style.borderColor = '';
+                    const errorMsg = document.getElementById('error-message');
+                    if (errorMsg) {
+                        errorMsg.style.display = 'none';
+                    }
+                });
+            });
+
+            // Auto-save all textareas
+            document.querySelectorAll('textarea').forEach(textarea => {
+                // Load saved value
+                const savedValue = localStorage.getItem(`stack_${textarea.name}`);
+                if (savedValue) {
+                    textarea.value = savedValue;
+                    debugLog(`Loaded saved data for ${textarea.name}`);
+                }
+                
+                // Save on input and clear errors
+                textarea.addEventListener('input', () => {
+                    localStorage.setItem(`stack_${textarea.name}`, textarea.value);
+                    updatePreviews();
+                    showSaveIndicator();
+                    debugLog(`Saved: ${textarea.name}`);
+                    
+                    // Clear error styling when user types
+                    if (textarea.value.trim()) {
+                        textarea.style.borderColor = '';
+                        const error = textarea.parentElement.querySelector('.field-error');
+                        if (error) {
+                            error.remove();
+                        }
+                    }
+                });
+            });
+            
+            // Auto-save all input fields (for user profile)
+            document.querySelectorAll('input, select').forEach(input => {
+                // Load saved value
+                const savedValue = localStorage.getItem(`stack_${input.name}`);
+                if (savedValue) {
+                    input.value = savedValue;
+                    debugLog(`Loaded saved data for ${input.name}`);
+                }
+                
+                // Save on change
+                input.addEventListener('change', () => {
+                    localStorage.setItem(`stack_${input.name}`, input.value);
+                    showSaveIndicator();
+                    debugLog(`Saved profile data: ${input.name}`);
+                });
+                
+                // For text inputs, also save on input
+                if (input.type === 'text' || input.type === 'email' || input.type === 'number') {
+                    input.addEventListener('input', () => {
+                        localStorage.setItem(`stack_${input.name}`, input.value);
+                        showSaveIndicator();
+                    });
+                }
+            });
+            
+            // Set current time of day automatically
+            const hour = new Date().getHours();
+            const timeSelect = document.getElementById('time-of-day');
+            if (timeSelect && !localStorage.getItem('stack_time_of_day')) {
+                if (hour < 12) timeSelect.value = 'morning';
+                else if (hour < 17) timeSelect.value = 'afternoon';
+                else if (hour < 21) timeSelect.value = 'evening';
+                else timeSelect.value = 'night';
+            }
+
+            debugLog('Initialization complete');
+        });
+
+        // Validate required fields
+        function validateRequiredFields() {
+            const requiredFields = document.querySelectorAll('.required-field');
+            let isValid = true;
+            let firstInvalidField = null;
+            
+            requiredFields.forEach(field => {
+                if (!validateField(field)) {
+                    isValid = false;
+                    if (!firstInvalidField) {
+                        firstInvalidField = field;
+                    }
+                }
+            });
+            
+            if (!isValid) {
+                // Show error message
+                const errorMsg = document.getElementById('error-message');
+                if (errorMsg) {
+                    errorMsg.style.display = 'block';
+                    errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                
+                // Focus first invalid field
+                if (firstInvalidField) {
+                    firstInvalidField.focus();
+                }
+                
+                debugLog('Validation failed - required fields missing');
+            } else {
+                debugLog('Validation passed');
+            }
+            
+            return isValid;
+        }
+        
+        // Validate individual field
+        function validateField(field) {
+            let isValid = false;
+            
+            if (field.type === 'email') {
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                isValid = emailRegex.test(field.value.trim());
+                if (!isValid && field.value.trim()) {
+                    field.style.borderColor = '#ff4336';
+                    showFieldError(field, 'Please enter a valid email address');
+                } else if (!field.value.trim()) {
+                    field.style.borderColor = '#ff4336';
+                    showFieldError(field, 'This field is required');
+                } else {
+                    field.style.borderColor = '#4ecdc4';
+                    clearFieldError(field);
+                }
+            } else {
+                // Regular required field validation
+                isValid = field.value.trim() !== '';
+                if (!isValid) {
+                    field.style.borderColor = '#ff4336';
+                    showFieldError(field, 'This field is required');
+                } else {
+                    field.style.borderColor = '#4ecdc4';
+                    clearFieldError(field);
+                }
+            }
+            
+            return isValid;
+        }
+        
+        // Show field-specific error
+        function showFieldError(field, message) {
+            // Remove any existing error
+            clearFieldError(field);
+            
+            // Create error element
+            const error = document.createElement('div');
+            error.className = 'field-error';
+            error.style.color = '#ff4336';
+            error.style.fontSize = '0.85em';
+            error.style.marginTop = '5px';
+            error.textContent = message;
+            field.parentElement.appendChild(error);
+        }
+        
+        // Clear field error
+        function clearFieldError(field) {
+            const existingError = field.parentElement.querySelector('.field-error');
+            if (existingError) {
+                existingError.remove();
+            }
+        }
+        
+        function nextStep(stackType) {
+            // Validate current step's required fields
+            const currentStepDiv = document.getElementById(`${stackType}-step-${currentStep[stackType]}`);
+            const requiredTextareas = currentStepDiv.querySelectorAll('textarea[required], textarea');
+            let hasEmptyRequired = false;
+            
+            requiredTextareas.forEach(textarea => {
+                if (!textarea.value.trim()) {
+                    hasEmptyRequired = true;
+                    textarea.style.borderColor = '#ff4336';
+                    // Show inline error
+                    if (!textarea.nextElementSibling || !textarea.nextElementSibling.classList.contains('field-error')) {
+                        const error = document.createElement('div');
+                        error.className = 'field-error';
+                        error.style.color = '#ff4336';
+                        error.style.fontSize = '0.85em';
+                        error.style.marginTop = '5px';
+                        error.textContent = 'Please complete this step before continuing';
+                        textarea.parentElement.insertBefore(error, textarea.nextSibling);
+                    }
+                }
+            });
+            
+            if (hasEmptyRequired) {
+                debugLog(`Cannot proceed - empty required fields in ${stackType} step ${currentStep[stackType]}`);
+                return;
+            }
+            
+            debugLog(`Next step for ${stackType}: ${currentStep[stackType]} -> ${currentStep[stackType] + 1}`);
+            const maxSteps = stackConfigs[stackType].steps;
+            
+            if (currentStep[stackType] < maxSteps) {
+                // Hide current step
+                const currentStepElement = document.getElementById(`${stackType}-step-${currentStep[stackType]}`);
+                if (currentStepElement) {
+                    currentStepElement.classList.add('section-hidden');
+                }
+                
+                // Move to next step
+                currentStep[stackType]++;
+                
+                // Show next step
+                const nextStepElement = document.getElementById(`${stackType}-step-${currentStep[stackType]}`);
+                if (nextStepElement) {
+                    nextStepElement.classList.remove('section-hidden');
+                }
+                
+                // Show Previous button after step 1
+                const prevBtn = document.getElementById(`${stackType}-prev-btn`);
+                if (prevBtn && currentStep[stackType] > 1) {
+                    prevBtn.style.display = 'block';
+                }
+                
+                updateProgress(stackType);
+                updateStepNumber(stackType);
+                updatePreviews();
+                
+                // Update button for last step
+                if (currentStep[stackType] === maxSteps) {
+                    const nextBtn = document.getElementById(`${stackType}-next-btn`);
+                    if (nextBtn) {
+                        nextBtn.textContent = 'Complete Stack';
+                        nextBtn.onclick = () => completeStack(stackType);
+                    }
+                }
+            }
+        }
+
+        function previousStep(stackType) {
+            debugLog(`Previous step for ${stackType}: ${currentStep[stackType]} -> ${currentStep[stackType] - 1}`);
+            
+            if (currentStep[stackType] > 1) {
+                // Hide current step
+                const currentStepElement = document.getElementById(`${stackType}-step-${currentStep[stackType]}`);
+                if (currentStepElement) {
+                    currentStepElement.classList.add('section-hidden');
+                }
+                
+                // Move to previous step
+                currentStep[stackType]--;
+                
+                // Show previous step
+                const prevStepElement = document.getElementById(`${stackType}-step-${currentStep[stackType]}`);
+                if (prevStepElement) {
+                    prevStepElement.classList.remove('section-hidden');
+                }
+                
+                // Hide Previous button if we're back at step 1
+                const prevBtn = document.getElementById(`${stackType}-prev-btn`);
+                if (prevBtn && currentStep[stackType] === 1) {
+                    prevBtn.style.display = 'none';
+                }
+                
+                updateProgress(stackType);
+                updateStepNumber(stackType);
+                
+                // Reset button text if not on last step
+                const nextBtn = document.getElementById(`${stackType}-next-btn`);
+                if (nextBtn && currentStep[stackType] < stackConfigs[stackType].steps) {
+                    nextBtn.textContent = 'Next Step';
+                    nextBtn.onclick = () => nextStep(stackType);
+                }
+            }
+        }
+
+        function updateProgress(stackType) {
+            const progress = (currentStep[stackType] / stackConfigs[stackType].steps) * 100;
+            const progressBar = document.getElementById(`${stackType}-progress`);
+            if (progressBar) {
+                progressBar.style.width = `${progress}%`;
+                debugLog(`Progress for ${stackType}: ${progress.toFixed(1)}%`);
+            }
+        }
+
+        function updateStepNumber(stackType) {
+            const stepNumber = document.getElementById(`${stackType}-step-number`);
+            if (stepNumber) {
+                stepNumber.textContent = currentStep[stackType];
+            }
+        }
+
+        function updatePreviews() {
+            // Update all preview spans with previous answers
+            document.querySelectorAll('.previous-answer').forEach(span => {
+                const id = span.id;
+                if (!id) return;
+                
+                // Extract the field name from the preview ID
+                // e.g., "prayer-subject-preview" -> "prayer_subject"
+                const fieldName = id.replace('-preview', '').replace(/-/g, '_');
+                const sourceTextarea = document.querySelector(`textarea[name="${fieldName}"]`);
+                
+                if (sourceTextarea && sourceTextarea.value) {
+                    const preview = sourceTextarea.value.substring(0, 100);
+                    span.textContent = preview + (sourceTextarea.value.length > 100 ? '...' : '');
+                    debugLog(`Updated preview for ${fieldName}`);
+                }
+            });
+        }
+
+        function backToSelection() {
+            debugLog('Returning to stack selection');
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.classList.add('section-hidden');
+            });
+            document.getElementById('section-stack-selection').classList.remove('section-hidden');
+        }
+
+        function completeStack(stackType) {
+            debugLog(`Completing ${stackType} stack`);
+            
+            // Collect all data
+            const formData = new FormData(document.getElementById('stack-form'));
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            debugLog('Form data collected: ' + JSON.stringify(Object.keys(data)));
+            
+            // Send to webhook
+            submitToWebhook(data);
+            
+            // Show completion
+            document.getElementById(`section-${stackConfigs[stackType].section}`).classList.add('section-hidden');
+            document.getElementById('section-completion').classList.remove('section-hidden');
+            
+            // Clear localStorage for this stack
+            clearStackData(stackType);
+        }
+
+        function submitToWebhook(data) {
+            // Configured webhook URL
+            const webhookUrl = 'https://n8n-production-3280.up.railway.app/webhook/stack-form-submit';
+            debugLog(`Submitting to webhook: ${webhookUrl}`);
+            
+            // Add metadata
+            const payload = {
+                ...data,
+                timestamp: new Date().toISOString(),
+                user_id: 'web_form_user'
+            };
+            
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            }).then(response => {
+                debugLog('Stack submitted successfully');
+            }).catch(error => {
+                debugLog('Error submitting stack: ' + error.message);
+            });
+        }
+
+        function clearStackData(stackType) {
+            debugLog(`Clearing saved data for ${stackType}`);
+            document.querySelectorAll(`textarea[name^="${stackType}_"]`).forEach(textarea => {
+                localStorage.removeItem(`stack_${textarea.name}`);
+            });
+        }
+
+        function loadSavedData() {
+            debugLog('Loading saved data from localStorage');
+            let loadedCount = 0;
+            document.querySelectorAll('textarea').forEach(textarea => {
+                const savedValue = localStorage.getItem(`stack_${textarea.name}`);
+                if (savedValue) {
+                    textarea.value = savedValue;
+                    loadedCount++;
+                }
+            });
+            debugLog(`Loaded ${loadedCount} saved fields`);
+        }
+
+        function startNewStack() {
+            debugLog('Starting new stack session');
+            
+            // Reset everything
+            currentStack = null;
+            Object.keys(stackConfigs).forEach(stack => {
+                currentStep[stack] = 1;
+            });
+            document.getElementById('selected-stack').value = '';
+            document.getElementById('start-stack-btn').disabled = true;
+            document.querySelectorAll('.stack-card').forEach(c => c.classList.remove('selected'));
+            
+            // Clear all textareas
+            document.querySelectorAll('textarea').forEach(t => {
+                t.value = '';
+                localStorage.removeItem(`stack_${t.name}`);
+            });
+            
+            // Clear all input fields
+            document.querySelectorAll('input, select').forEach(input => {
+                if (input.type !== 'hidden') {
+                    input.value = '';
+                    localStorage.removeItem(`stack_${input.name}`);
+                }
+            });
+            
+            // Reset all steps to step 1
+            document.querySelectorAll('.stack-step').forEach((step, index) => {
+                if (index === 0 || step.id.endsWith('-step-1')) {
+                    step.classList.remove('section-hidden');
+                } else {
+                    step.classList.add('section-hidden');
+                }
+            });
+            
+            // Reset progress bars
+            document.querySelectorAll('.progress-fill').forEach(bar => {
+                bar.style.width = '0%';
+            });
+            
+            // Show selection screen
+            document.getElementById('section-completion').classList.add('section-hidden');
+            document.getElementById('section-stack-selection').classList.remove('section-hidden');
+            
+            debugLog('Stack session reset complete');
+        }
+    </script>
+</body>
+</html>
