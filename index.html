@@ -1099,12 +1099,26 @@ Or create your own structure..."></textarea>
     <script>
         // Debug console logging
         function debugLog(message) {
-            console.log(message);
-            const debugConsole = document.getElementById('debugConsole');
-            const timestamp = new Date().toLocaleTimeString();
-            debugConsole.innerHTML += `<br>[${timestamp}] ${message}`;
-            debugConsole.scrollTop = debugConsole.scrollHeight;
-        }
+  console.log(message);
+  let debugConsole = document.getElementById('debugConsole');
+
+  // Option 1: just bail if not present
+  if (!debugConsole) return;
+
+  // Option 2 (auto-create):
+  // if (!debugConsole) {
+  //   debugConsole = document.createElement('div');
+  //   debugConsole.id = 'debugConsole';
+  //   debugConsole.className = 'debug-console';
+  //   debugConsole.textContent = 'Console initialized...';
+  //   document.body.appendChild(debugConsole);
+  // }
+
+  const timestamp = new Date().toLocaleTimeString();
+  debugConsole.insertAdjacentHTML('beforeend', `<br>[${timestamp}] ${message}`);
+  debugConsole.scrollTop = debugConsole.scrollHeight;
+}
+
 
         // Stack configurations
         const stackConfigs = {
