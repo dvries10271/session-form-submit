@@ -272,32 +272,6 @@
             background: rgba(255, 255, 255, 0.15);
         }
 
-        .domain-selector {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .domain-option {
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .domain-option:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .domain-option.selected {
-            background: rgba(78, 205, 196, 0.2);
-            border-color: #4ecdc4;
-        }
-
         .completion-message {
             text-align: center;
             padding: 40px;
@@ -381,45 +355,12 @@
             color: #667eea;
         }
 
-        .status-info {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #4caf50;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .last-sync {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.85rem;
-        }
-
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.85rem;
-        }
-
-        .version-info {
-            margin-top: 0.5rem;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.3);
         }
 
         /* Responsive Design */
@@ -446,11 +387,6 @@
             .stack-grid {
                 grid-template-columns: 1fr;
             }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
         }
     </style>
 </head>
@@ -474,6 +410,7 @@
     <div class="main-content">
         <div class="container">
             <form id="stack-form">
+            
             <!-- Section 1: Session Type Selection -->
             <div id="section-stack-selection" class="form-section">
                 <!-- User Information Section -->
@@ -491,9 +428,8 @@
                         </div>
                     </div>
                     
-                    <!-- Manual Entry Form (hidden when logged in) -->
+                    <!-- Manual Entry Form -->
                     <div id="manual-entry-form">
-                        <!-- Error Message Container -->
                         <div id="error-message" style="display: none; background: rgba(255, 67, 54, 0.2); border: 1px solid #ff4336; 
                                                         color: #ff8a80; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
                             <strong>Please fill in all required fields</strong>
@@ -596,7 +532,7 @@
                 </div>
             </div>
 
-            <!-- PRAYER SESSION (9 steps) -->
+            <!-- PRAYER SESSION PLACEHOLDER -->
             <div id="section-prayer-stack" class="form-section section-hidden">
                 <div class="progress-bar">
                     <div class="progress-fill" id="prayer-progress"></div>
@@ -605,27 +541,23 @@
                 <div class="step-indicator">
                     <h2>Prayer Session</h2>
                     <p>Step <span id="prayer-step-number">1</span> of 9</p>
-                    <button type="button" class="btn-secondary" onclick="backToSelection()" style="margin-top: 10px;">
-                        ← Change Session Type
-                    </button>
                 </div>
 
-                <!-- Step 1: Session Title -->
                 <div id="prayer-step-1" class="stack-step">
                     <div class="question-prompt">
-                        <p><strong>What are you going to title this prayer session?</strong></p>
+                        <p><strong>Prayer Session - Step 1</strong></p>
+                        <p>This is a placeholder. Add your complete prayer session content here.</p>
                     </div>
-                    <textarea name="prayer_title" placeholder="Give this prayer session a meaningful title..."></textarea>
+                    <textarea name="prayer_1" placeholder="Prayer session content..."></textarea>
                 </div>
 
-                <!-- Additional prayer steps would go here -->
                 <div class="button-group">
-                    <button type="button" class="btn-secondary" onclick="previousStep('prayer')" id="prayer-prev-btn" style="display: none;">Previous</button>
-                    <button type="button" class="btn-primary" onclick="nextStep('prayer')" id="prayer-next-btn">Next Step</button>
+                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
+                    <button type="button" class="btn-primary" onclick="completeSession('prayer')">Complete Session</button>
                 </div>
             </div>
 
-            <!-- GRATITUDE SESSION (8 steps) -->
+            <!-- GRATITUDE SESSION PLACEHOLDER -->
             <div id="section-gratitude-stack" class="form-section section-hidden">
                 <div class="progress-bar">
                     <div class="progress-fill" id="gratitude-progress"></div>
@@ -634,23 +566,144 @@
                 <div class="step-indicator">
                     <h2>Gratitude Session</h2>
                     <p>Step <span id="gratitude-step-number">1</span> of 8</p>
-                    <button type="button" class="btn-secondary" onclick="backToSelection()" style="margin-top: 10px;">
-                        ← Change Session Type
-                    </button>
                 </div>
 
-                <!-- Step 1: Title -->
                 <div id="gratitude-step-1" class="stack-step">
                     <div class="question-prompt">
-                        <p><strong>What are you going to title this Gratitude Session?</strong></p>
+                        <p><strong>Gratitude Session - Step 1</strong></p>
+                        <p>This is a placeholder. Add your complete gratitude session content here.</p>
                     </div>
-                    <textarea name="gratitude_title" placeholder="Give this gratitude session a meaningful title..."></textarea>
+                    <textarea name="gratitude_1" placeholder="Gratitude session content..."></textarea>
                 </div>
 
-                <!-- Additional gratitude steps would go here -->
                 <div class="button-group">
-                    <button type="button" class="btn-secondary" onclick="previousStep('gratitude')" id="gratitude-prev-btn" style="display: none;">Previous</button>
-                    <button type="button" class="btn-primary" onclick="nextStep('gratitude')" id="gratitude-next-btn">Next Step</button>
+                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
+                    <button type="button" class="btn-primary" onclick="completeSession('gratitude')">Complete Session</button>
+                </div>
+            </div>
+
+            <!-- HAPPY SESSION PLACEHOLDER -->
+            <div id="section-happy-stack" class="form-section section-hidden">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="happy-progress"></div>
+                </div>
+                
+                <div class="step-indicator">
+                    <h2>Happy Session</h2>
+                    <p>Step <span id="happy-step-number">1</span> of 8</p>
+                </div>
+
+                <div id="happy-step-1" class="stack-step">
+                    <div class="question-prompt">
+                        <p><strong>Happy Session - Step 1</strong></p>
+                        <p>This is a placeholder. Add your complete happy session content here.</p>
+                    </div>
+                    <textarea name="happy_1" placeholder="Happy session content..."></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
+                    <button type="button" class="btn-primary" onclick="completeSession('happy')">Complete Session</button>
+                </div>
+            </div>
+
+            <!-- ANGRY SESSION PLACEHOLDER -->
+            <div id="section-angry-stack" class="form-section section-hidden">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="angry-progress"></div>
+                </div>
+                
+                <div class="step-indicator">
+                    <h2>Angry Session</h2>
+                    <p>Step <span id="angry-step-number">1</span> of 8</p>
+                </div>
+
+                <div id="angry-step-1" class="stack-step">
+                    <div class="question-prompt">
+                        <p><strong>Angry Session - Step 1</strong></p>
+                        <p>This is a placeholder. Add your complete angry session content here.</p>
+                    </div>
+                    <textarea name="angry_1" placeholder="Angry session content..."></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
+                    <button type="button" class="btn-primary" onclick="completeSession('angry')">Complete Session</button>
+                </div>
+            </div>
+
+            <!-- WAR SESSION PLACEHOLDER -->
+            <div id="section-war-stack" class="form-section section-hidden">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="war-progress"></div>
+                </div>
+                
+                <div class="step-indicator">
+                    <h2>War/Action Session</h2>
+                    <p>Step <span id="war-step-number">1</span> of 7</p>
+                </div>
+
+                <div id="war-step-1" class="stack-step">
+                    <div class="question-prompt">
+                        <p><strong>War/Action Session - Step 1</strong></p>
+                        <p>This is a placeholder. Add your complete war session content here.</p>
+                    </div>
+                    <textarea name="war_1" placeholder="War session content..."></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
+                    <button type="button" class="btn-primary" onclick="completeSession('war')">Complete Session</button>
+                </div>
+            </div>
+
+            <!-- DISCOVER SESSION PLACEHOLDER -->
+            <div id="section-discover-stack" class="form-section section-hidden">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="discover-progress"></div>
+                </div>
+                
+                <div class="step-indicator">
+                    <h2>Discover Session</h2>
+                    <p>Step <span id="discover-step-number">1</span> of 5</p>
+                </div>
+
+                <div id="discover-step-1" class="stack-step">
+                    <div class="question-prompt">
+                        <p><strong>Discover Session - Step 1</strong></p>
+                        <p>This is a placeholder. Add your complete discover session content here.</p>
+                    </div>
+                    <textarea name="discover_1" placeholder="Discover session content..."></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
+                    <button type="button" class="btn-primary" onclick="completeSession('discover')">Complete Session</button>
+                </div>
+            </div>
+
+            <!-- OPEN SESSION -->
+            <div id="section-open-stack" class="form-section section-hidden">
+                <div class="step-indicator">
+                    <h2>Open Session</h2>
+                    <p>Freestyle Format</p>
+                </div>
+
+                <div class="stack-step">
+                    <div class="question-prompt">
+                        <p><strong>What are you going to title this Open Session?</strong></p>
+                    </div>
+                    <textarea name="open_title" placeholder="Name your freestyle session..."></textarea>
+                    
+                    <div class="question-prompt" style="margin-top: 30px;">
+                        <p><strong>Time to freestyle. Share your thoughts...</strong></p>
+                    </div>
+                    <textarea name="open_content" style="min-height: 400px;" placeholder="Express yourself freely..."></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
+                    <button type="button" class="btn-primary" onclick="completeSession('open')">Complete Session</button>
                 </div>
             </div>
 
@@ -676,165 +729,40 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Transformation Sessions</h4>
-                <p>Structured processing frameworks to transform thoughts into action and extract wisdom from every experience.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Navigation</h4>
-                <ul class="footer-links">
-                    <li><a href="https://dvries10271.github.io/Coaching_Command_Center/">Main Dashboard</a></li>
-                    <li><a href="https://dvries10271.github.io/Analytics-Dashboard/">Analytics Dashboard</a></li>
-                    <li><a href="https://dvries10271.github.io/Action-Command-Center/">Action Center</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Session Types</h4>
-                <ul class="footer-links">
-                    <li><a href="#" onclick="selectStackType('prayer')">Prayer Session</a></li>
-                    <li><a href="#" onclick="selectStackType('gratitude')">Gratitude Session</a></li>
-                    <li><a href="#" onclick="selectStackType('war')">War/Action Session</a></li>
-                    <li><a href="#" onclick="selectStackType('discover')">Discovery Session</a></li>
-                    <li><a href="#" onclick="selectStackType('open')">Open Format</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>System Status</h4>
-                <div class="status-info">
-                    <span class="status-dot"></span>
-                    <span>Session Module Active</span>
-                </div>
-                <div class="last-sync">
-                    Auto-save: Enabled
-                </div>
-                <div class="last-sync" id="footerLastSave">
-                    Last saved: Never
-                </div>
+                <p>Structured processing frameworks to transform thoughts into action.</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 Lead Generation Experts LLC Coaching System. Built With Purpose. All Rights Reserved.</p>
-            <p class="version-info">Transformation Sessions v2.0 | Enhanced September 2025</p>
+            <p>© 2025 Coaching Command Center. Built With Purpose.</p>
         </div>
     </footer>
 
     <script>
-        // Check authentication on load
-        function checkUserAuthentication() {
-            const userEmail = localStorage.getItem('coaching_user_email');
-            const userData = localStorage.getItem('coaching_user_data');
-            
-            if (userEmail && userData) {
-                try {
-                    const user = JSON.parse(userData);
-                    console.log('User authenticated: ' + user.name);
-                    
-                    // Hide manual entry form
-                    document.getElementById('manual-entry-form').style.display = 'none';
-                    
-                    // Show logged-in display
-                    document.getElementById('logged-in-display').style.display = 'block';
-                    document.getElementById('display-name').textContent = user.name || 'User';
-                    document.getElementById('display-email').textContent = user.email || userEmail;
-                    
-                    // Auto-populate hidden fields for form submission
-                    document.getElementById('user-name').value = user.name || 'User';
-                    document.getElementById('user-email').value = user.email || userEmail;
-                    
-                    // Remove required attribute since we have the data
-                    document.getElementById('user-name').removeAttribute('required');
-                    document.getElementById('user-email').removeAttribute('required');
-                    document.getElementById('user-name').classList.remove('required-field');
-                    document.getElementById('user-email').classList.remove('required-field');
-                    
-                } catch (error) {
-                    console.log('Error parsing user data: ' + error);
-                    // If there's an error, show manual entry
-                    showManualEntry();
-                }
-            } else {
-                console.log('No user authentication found');
-                showManualEntry();
-            }
-        }
-        
-        function showManualEntry() {
-            document.getElementById('manual-entry-form').style.display = 'block';
-            document.getElementById('logged-in-display').style.display = 'none';
-        }
-
-        // Navigation function
-        function goBackToDashboard() {
-            window.location.href = 'https://dvries10271.github.io/Coaching_Command_Center/';
-        }
-
-        // Quick stack selection from footer
-        function selectStackType(stackType) {
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            // Deselect all cards
-            document.querySelectorAll('.stack-card').forEach(c => c.classList.remove('selected'));
-            
-            // Select the specific card
-            const targetCard = document.querySelector(`[data-stack="${stackType}"]`);
-            if (targetCard) {
-                targetCard.classList.add('selected');
-                currentStack = stackType;
-                document.getElementById('selected-stack').value = stackType;
-                document.getElementById('start-stack-btn').disabled = false;
-            }
-        }
-
-        // Debug console logging (simplified)
-        function debugLog(message) {
-            console.log(message);
-        }
-
-        // Stack configurations (keeping internal variable names for compatibility)
+        // Configuration
         const stackConfigs = {
             prayer: { steps: 9, section: 'prayer-stack' },
+            gratitude: { steps: 8, section: 'gratitude-stack' },
+            happy: { steps: 8, section: 'happy-stack' },
+            angry: { steps: 8, section: 'angry-stack' },
             war: { steps: 7, section: 'war-stack' },
             discover: { steps: 5, section: 'discover-stack' },
-            gratitude: { steps: 8, section: 'gratitude-stack' },
-            angry: { steps: 8, section: 'angry-stack' },
-            happy: { steps: 8, section: 'happy-stack' },
             open: { steps: 1, section: 'open-stack' }
         };
 
         let currentStack = null;
         let currentStep = {};
 
-        // Save indicator
-        function showSaveIndicator() {
-            const indicator = document.getElementById('saveIndicator');
-            indicator.classList.add('show');
-            
-            // Update footer last save time
-            const now = new Date();
-            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            const footerSave = document.getElementById('footerLastSave');
-            if (footerSave) {
-                footerSave.textContent = 'Last saved: ' + timeString;
-            }
-            
-            setTimeout(() => {
-                indicator.classList.remove('show');
-            }, 2000);
-        }
-
-        // Initialize on page load
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            debugLog('Page loaded - initializing...');
+            console.log('Page loaded - initializing...');
             
             // Check for logged-in user
             checkUserAuthentication();
             
-            // Initialize all step trackers
+            // Initialize step trackers
             Object.keys(stackConfigs).forEach(stack => {
                 currentStep[stack] = 1;
             });
-
-            // Load saved data from localStorage
-            loadSavedData();
 
             // Stack card selection
             document.querySelectorAll('.stack-card').forEach(card => {
@@ -844,276 +772,122 @@
                     currentStack = card.dataset.stack;
                     document.getElementById('selected-stack').value = currentStack;
                     document.getElementById('start-stack-btn').disabled = false;
-                    debugLog(`Selected stack: ${currentStack}`);
+                    console.log(`Selected stack: ${currentStack}`);
                 });
             });
 
-            // Start stack button
+            // Start button
             document.getElementById('start-stack-btn').addEventListener('click', () => {
-                // Validate required fields first
                 if (!validateRequiredFields()) {
                     return;
                 }
                 
                 if (currentStack) {
-                    debugLog(`Starting ${currentStack} stack`);
+                    console.log(`Starting ${currentStack} stack`);
                     document.getElementById('section-stack-selection').classList.add('section-hidden');
                     
-                    // Show the selected stack section
                     const sectionId = `section-${stackConfigs[currentStack].section}`;
                     const section = document.getElementById(sectionId);
                     if (section) {
                         section.classList.remove('section-hidden');
-                        currentStep[currentStack] = 1;
-                        updateProgress(currentStack);
-                        debugLog(`Showing section: ${sectionId}`);
+                        console.log(`Showing section: ${sectionId}`);
                     } else {
-                        debugLog(`ERROR: Section not found: ${sectionId}`);
+                        console.log(`ERROR: Section not found: ${sectionId}`);
                     }
-                }
-            });
-            
-            // Validate required fields on input
-            document.querySelectorAll('.required-field').forEach(field => {
-                field.addEventListener('blur', () => {
-                    validateField(field);
-                });
-                
-                field.addEventListener('input', () => {
-                    // Clear error state when user starts typing
-                    field.style.borderColor = '';
-                    const errorMsg = document.getElementById('error-message');
-                    if (errorMsg) {
-                        errorMsg.style.display = 'none';
-                    }
-                });
-            });
-
-            // Auto-save all textareas
-            document.querySelectorAll('textarea').forEach(textarea => {
-                // Load saved value
-                const savedValue = localStorage.getItem(`stack_${textarea.name}`);
-                if (savedValue) {
-                    textarea.value = savedValue;
-                    debugLog(`Loaded saved data for ${textarea.name}`);
-                }
-                
-                // Save on input and clear errors
-                textarea.addEventListener('input', () => {
-                    localStorage.setItem(`stack_${textarea.name}`, textarea.value);
-                    updatePreviews();
-                    showSaveIndicator();
-                    debugLog(`Saved: ${textarea.name}`);
-                    
-                    // Clear error styling when user types
-                    if (textarea.value.trim()) {
-                        textarea.style.borderColor = '';
-                        const error = textarea.parentElement.querySelector('.field-error');
-                        if (error) {
-                            error.remove();
-                        }
-                    }
-                });
-            });
-            
-            // Auto-save all input fields (for user profile)
-            document.querySelectorAll('input, select').forEach(input => {
-                // Load saved value
-                const savedValue = localStorage.getItem(`stack_${input.name}`);
-                if (savedValue) {
-                    input.value = savedValue;
-                    debugLog(`Loaded saved data for ${input.name}`);
-                }
-                
-                // Save on change
-                input.addEventListener('change', () => {
-                    localStorage.setItem(`stack_${input.name}`, input.value);
-                    showSaveIndicator();
-                    debugLog(`Saved profile data: ${input.name}`);
-                });
-                
-                // For text inputs, also save on input
-                if (input.type === 'text' || input.type === 'email' || input.type === 'number') {
-                    input.addEventListener('input', () => {
-                        localStorage.setItem(`stack_${input.name}`, input.value);
-                        showSaveIndicator();
-                    });
                 }
             });
 
-            debugLog('Initialization complete');
+            console.log('Initialization complete');
         });
 
-        // Validate required fields
-        function validateRequiredFields() {
-            // Check if user is already authenticated
+        function checkUserAuthentication() {
             const userEmail = localStorage.getItem('coaching_user_email');
             const userData = localStorage.getItem('coaching_user_data');
             
-            // If authenticated, skip validation of name/email
             if (userEmail && userData) {
-                debugLog('User authenticated - skipping name/email validation');
+                try {
+                    const user = JSON.parse(userData);
+                    console.log('User authenticated: ' + user.name);
+                    
+                    document.getElementById('manual-entry-form').style.display = 'none';
+                    document.getElementById('logged-in-display').style.display = 'block';
+                    document.getElementById('display-name').textContent = user.name || 'User';
+                    document.getElementById('display-email').textContent = user.email || userEmail;
+                    document.getElementById('user-name').value = user.name || 'User';
+                    document.getElementById('user-email').value = user.email || userEmail;
+                    document.getElementById('user-name').removeAttribute('required');
+                    document.getElementById('user-email').removeAttribute('required');
+                    document.getElementById('user-name').classList.remove('required-field');
+                    document.getElementById('user-email').classList.remove('required-field');
+                } catch (error) {
+                    console.log('Error parsing user data: ' + error);
+                    showManualEntry();
+                }
+            } else {
+                console.log('No user authentication found');
+                showManualEntry();
+            }
+        }
+
+        function showManualEntry() {
+            document.getElementById('manual-entry-form').style.display = 'block';
+            document.getElementById('logged-in-display').style.display = 'none';
+        }
+
+        function validateRequiredFields() {
+            const userEmail = localStorage.getItem('coaching_user_email');
+            const userData = localStorage.getItem('coaching_user_data');
+            
+            if (userEmail && userData) {
+                console.log('User authenticated - skipping name/email validation');
                 return true;
             }
             
-            // Otherwise, validate manual entry
             const requiredFields = document.querySelectorAll('.required-field');
             let isValid = true;
-            let firstInvalidField = null;
             
             requiredFields.forEach(field => {
-                if (!validateField(field)) {
+                if (!field.value.trim()) {
                     isValid = false;
-                    if (!firstInvalidField) {
-                        firstInvalidField = field;
-                    }
+                    field.style.borderColor = '#ff4336';
                 }
             });
             
             if (!isValid) {
-                // Show error message
                 const errorMsg = document.getElementById('error-message');
                 if (errorMsg) {
                     errorMsg.style.display = 'block';
-                    errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
-                
-                // Focus first invalid field
-                if (firstInvalidField) {
-                    firstInvalidField.focus();
-                }
-                
-                debugLog('Validation failed - required fields missing');
-            } else {
-                debugLog('Validation passed');
+                console.log('Validation failed');
             }
             
             return isValid;
         }
-        
-        // Validate individual field
-        function validateField(field) {
-            let isValid = false;
-            
-            if (field.type === 'email') {
-                // Email validation
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                isValid = emailRegex.test(field.value.trim());
-                if (!isValid && field.value.trim()) {
-                    field.style.borderColor = '#ff4336';
-                    showFieldError(field, 'Please enter a valid email address');
-                } else if (!field.value.trim()) {
-                    field.style.borderColor = '#ff4336';
-                    showFieldError(field, 'This field is required');
-                } else {
-                    field.style.borderColor = '#4ecdc4';
-                    clearFieldError(field);
-                }
-            } else {
-                // Regular required field validation
-                isValid = field.value.trim() !== '';
-                if (!isValid) {
-                    field.style.borderColor = '#ff4336';
-                    showFieldError(field, 'This field is required');
-                } else {
-                    field.style.borderColor = '#4ecdc4';
-                    clearFieldError(field);
-                }
-            }
-            
-            return isValid;
-        }
-        
-        // Show field-specific error
-        function showFieldError(field, message) {
-            // Remove any existing error
-            clearFieldError(field);
-            
-            // Create error element
-            const error = document.createElement('div');
-            error.className = 'field-error';
-            error.style.color = '#ff4336';
-            error.style.fontSize = '0.85em';
-            error.style.marginTop = '5px';
-            error.textContent = message;
-            field.parentElement.appendChild(error);
-        }
-        
-        // Clear field error
-        function clearFieldError(field) {
-            const existingError = field.parentElement.querySelector('.field-error');
-            if (existingError) {
-                existingError.remove();
-            }
-        }
-        
-        // Other helper functions
-        function loadSavedData() {
-            debugLog('Loading saved data from localStorage');
-            let loadedCount = 0;
-            document.querySelectorAll('textarea').forEach(textarea => {
-                const savedValue = localStorage.getItem(`stack_${textarea.name}`);
-                if (savedValue) {
-                    textarea.value = savedValue;
-                    loadedCount++;
-                }
-            });
-            debugLog(`Loaded ${loadedCount} saved fields`);
-        }
 
-        function updatePreviews() {
-            // Update all preview spans with previous answers
-            document.querySelectorAll('.previous-answer').forEach(span => {
-                const id = span.id;
-                if (!id) return;
-                
-                const fieldName = id.replace('-preview', '').replace(/-/g, '_');
-                const sourceTextarea = document.querySelector(`textarea[name="${fieldName}"]`);
-                
-                if (sourceTextarea && sourceTextarea.value) {
-                    const preview = sourceTextarea.value.substring(0, 100);
-                    span.textContent = preview + (sourceTextarea.value.length > 100 ? '...' : '');
-                    debugLog(`Updated preview for ${fieldName}`);
-                }
-            });
-        }
-
-        function updateProgress(stackType) {
-            const progress = (currentStep[stackType] / stackConfigs[stackType].steps) * 100;
-            const progressBar = document.getElementById(`${stackType}-progress`);
-            if (progressBar) {
-                progressBar.style.width = `${progress}%`;
-                debugLog(`Progress for ${stackType}: ${progress.toFixed(1)}%`);
-            }
-        }
-
-        function updateStepNumber(stackType) {
-            const stepNumber = document.getElementById(`${stackType}-step-number`);
-            if (stepNumber) {
-                stepNumber.textContent = currentStep[stackType];
-            }
+        function goBackToDashboard() {
+            window.location.href = 'https://dvries10271.github.io/Coaching_Command_Center/';
         }
 
         function backToSelection() {
-            debugLog('Returning to session selection');
+            console.log('Returning to session selection');
             document.querySelectorAll('.form-section').forEach(section => {
                 section.classList.add('section-hidden');
             });
             document.getElementById('section-stack-selection').classList.remove('section-hidden');
         }
 
-        function nextStep(stackType) {
-            // Implementation for next step
-            debugLog(`Next step for ${stackType}`);
-        }
-
-        function previousStep(stackType) {
-            // Implementation for previous step
-            debugLog(`Previous step for ${stackType}`);
+        function completeSession(sessionType) {
+            console.log(`Completing ${sessionType} session`);
+            
+            // Hide current section
+            document.getElementById(`section-${stackConfigs[sessionType].section}`).classList.add('section-hidden');
+            
+            // Show completion
+            document.getElementById('section-completion').classList.remove('section-hidden');
         }
 
         function startNewSession() {
-            debugLog('Starting new session');
+            console.log('Starting new session');
             
             // Reset everything
             currentStack = null;
@@ -1124,30 +898,15 @@
             document.getElementById('start-stack-btn').disabled = true;
             document.querySelectorAll('.stack-card').forEach(c => c.classList.remove('selected'));
             
-            // Clear all textareas
+            // Clear textareas
             document.querySelectorAll('textarea').forEach(t => {
                 t.value = '';
-                localStorage.removeItem(`stack_${t.name}`);
-            });
-            
-            // Clear all input fields
-            document.querySelectorAll('input, select').forEach(input => {
-                if (input.type !== 'hidden') {
-                    input.value = '';
-                    localStorage.removeItem(`stack_${input.name}`);
-                }
             });
             
             // Show selection screen
             document.getElementById('section-completion').classList.add('section-hidden');
             document.getElementById('section-stack-selection').classList.remove('section-hidden');
-            
-            debugLog('Session reset complete');
         }
-
-        // NOTE: You'll need to add the complete session sections (prayer steps 2-9, gratitude steps 2-8, etc.)
-        // and implement the navigation functions (nextStep, previousStep, completeStack)
-        // from your original file.
     </script>
 </body>
 </html>
