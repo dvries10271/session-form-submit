@@ -537,7 +537,7 @@
                 </div>
             </div>
 
-            <!-- PRAYER SESSION -->
+            <!-- PRAYER SESSION (9 steps) -->
             <div id="section-prayer-stack" class="form-section section-hidden">
                 <div class="progress-bar">
                     <div class="progress-fill" id="prayer-progress"></div>
@@ -546,8 +546,12 @@
                 <div class="step-indicator">
                     <h2>Prayer Session</h2>
                     <p>Step <span id="prayer-step-number">1</span> of 9</p>
+                    <button type="button" class="btn-secondary" onclick="backToSelection()" style="margin-top: 10px;">
+                        ← Change Session Type
+                    </button>
                 </div>
 
+                <!-- Step 1: Session Title -->
                 <div id="prayer-step-1" class="stack-step">
                     <div style="background: rgba(78, 205, 196, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
                         <h3 style="color: #4ecdc4; margin-bottom: 15px;">🙏 Prayer Session Purpose</h3>
@@ -577,271 +581,85 @@
                     <textarea name="prayer_title" placeholder="Give this prayer session a meaningful title..."></textarea>
                 </div>
 
-                <div class="button-group">
-                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
-                    <button type="button" class="btn-primary" onclick="completeSession('prayer')">Complete Session</button>
-                </div>
-            </div>
-
-            <!-- GRATITUDE SESSION -->
-            <div id="section-gratitude-stack" class="form-section section-hidden">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="gratitude-progress"></div>
-                </div>
-                
-                <div class="step-indicator">
-                    <h2>Gratitude Session</h2>
-                    <p>Step <span id="gratitude-step-number">1</span> of 8</p>
-                </div>
-
-                <div id="gratitude-step-1" class="stack-step">
-                    <div style="background: rgba(255, 215, 0, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
-                        <h3 style="color: #ffd700; margin-bottom: 15px;">💛 Gratitude Session Purpose</h3>
-                        <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
-                            The Gratitude Session lifts your spirit, allows you to see your progression, and improves relationships 
-                            across all Core 4 areas. It helps you appreciate what you have and transforms challenges into growth opportunities.
-                        </p>
-                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
-                        <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
-                            <li>You want to acknowledge progress and wins</li>
-                            <li>Someone has positively impacted your life</li>
-                            <li>You need to shift perspective on challenges</li>
-                            <li>Celebrating milestones or achievements</li>
-                        </ul>
-                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
-                        <ul style="color: #ffd700; margin-left: 20px;">
-                            <li>✓ Elevated emotional state</li>
-                            <li>✓ Deeper appreciation for your journey</li>
-                            <li>✓ Strengthened relationships</li>
-                            <li>✓ Renewed energy and motivation</li>
-                        </ul>
-                    </div>
-                    
+                <!-- Step 2: Prayer Subject -->
+                <div id="prayer-step-2" class="stack-step section-hidden">
                     <div class="question-prompt">
-                        <p><strong>What are you going to title this Gratitude Session?</strong></p>
+                        <p><strong>Who or what are you stacking?</strong></p>
+                        <p style="color: #b8b8b8;">What/who prompted you to pray - could be a person, situation, challenge, or blessing.</p>
                     </div>
-                    <textarea name="gratitude_title" placeholder="Give this gratitude session a meaningful title..."></textarea>
+                    <textarea name="prayer_subject" placeholder="Describe who or what brought you to prayer..."></textarea>
                 </div>
 
-                <div class="button-group">
-                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
-                    <button type="button" class="btn-primary" onclick="completeSession('gratitude')">Complete Session</button>
-                </div>
-            </div>
-
-            <!-- HAPPY SESSION -->
-            <div id="section-happy-stack" class="form-section section-hidden">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="happy-progress"></div>
-                </div>
-                
-                <div class="step-indicator">
-                    <h2>Happy Session</h2>
-                    <p>Step <span id="happy-step-number">1</span> of 8</p>
-                </div>
-
-                <div id="happy-step-1" class="stack-step">
-                    <div style="background: rgba(76, 175, 80, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
-                        <h3 style="color: #4caf50; margin-bottom: 15px;">😊 Celebration Session Purpose</h3>
-                        <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
-                            The Celebration Session helps you celebrate wins and extract wisdom from positive experiences. This 8-step process 
-                            ensures you learn from success, maintain momentum, and amplify what's working in your life.
-                        </p>
-                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
-                        <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
-                            <li>You've achieved a win or breakthrough</li>
-                            <li>Something wonderful has happened</li>
-                            <li>Want to maintain positive momentum</li>
-                            <li>Need to remind yourself of your progress</li>
-                        </ul>
-                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
-                        <ul style="color: #4caf50; margin-left: 20px;">
-                            <li>✓ Deep appreciation of your success</li>
-                            <li>✓ Clear understanding of what created the win</li>
-                            <li>✓ Lessons to replicate success</li>
-                            <li>✓ Renewed energy and motivation</li>
-                        </ul>
-                    </div>
-                    
+                <!-- Step 3: Prayer Trigger -->
+                <div id="prayer-step-3" class="stack-step section-hidden">
                     <div class="question-prompt">
-                        <p><strong>What are you going to title this Celebration Session?</strong></p>
+                        <p>About "<span class="previous-answer" id="prayer-subject-preview"></span>"</p>
+                        <p><strong>In this moment, why has this triggered you to pray?</strong></p>
                     </div>
-                    <textarea name="happy_title" placeholder="Name this celebration..."></textarea>
+                    <textarea name="prayer_trigger" placeholder="What about this situation calls you to prayer..."></textarea>
                 </div>
 
-                <!-- ANGRY SESSION -->
-            </div>
-
-            <div id="section-angry-stack" class="form-section section-hidden">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="angry-progress"></div>
-                </div>
-                
-                <div class="step-indicator">
-                    <h2>Angry Session</h2>
-                    <p>Step <span id="angry-step-number">1</span> of 8</p>
-                </div>
-
-                <div id="angry-step-1" class="stack-step">
-                    <div style="background: rgba(244, 67, 54, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
-                        <h3 style="color: #f44336; margin-bottom: 15px;">😤 Anger Processing Purpose</h3>
-                        <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
-                            The Anger Processing session transforms rage and irritation into strategic action. This 8-step process helps you 
-                            process negative emotions, separate facts from feelings, and create empowering narratives that serve your goals.
-                        </p>
-                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
-                        <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
-                            <li>Someone or something has triggered your anger</li>
-                            <li>Feeling frustrated and need clarity</li>
-                            <li>Want to convert destructive emotions into productive action</li>
-                            <li>Need to reframe a situation strategically</li>
-                        </ul>
-                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
-                        <ul style="color: #f44336; margin-left: 20px;">
-                            <li>✓ Release of emotional charge</li>
-                            <li>✓ Clear distinction between facts and feelings</li>
-                            <li>✓ New empowering story that serves you</li>
-                            <li>✓ Strategic action plan from a place of power</li>
-                        </ul>
-                    </div>
-                    
+                <!-- Step 4: Situation Story -->
+                <div id="prayer-step-4" class="stack-step section-hidden">
                     <div class="question-prompt">
-                        <p><strong>What are you going to title this processing session?</strong></p>
+                        <p><strong>What is the story you're telling yourself, created by this trigger, about the situation?</strong></p>
                     </div>
-                    <textarea name="angry_title" placeholder="Name this processing session..."></textarea>
+                    <textarea name="prayer_story" placeholder="Share your interpretation of the circumstances..."></textarea>
                 </div>
 
-                <!-- WAR SESSION -->
-            </div>
-
-            <div id="section-war-stack" class="form-section section-hidden">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="war-progress"></div>
-                </div>
-                
-                <div class="step-indicator">
-                    <h2>War/Action Session</h2>
-                    <p>Step <span id="war-step-number">1</span> of 7</p>
-                </div>
-
-                <div id="war-step-1" class="stack-step">
-                    <div style="background: rgba(255, 107, 107, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
-                        <h3 style="color: #ff6b6b; margin-bottom: 15px;">⚔️ WAR/Idea Session Purpose</h3>
-                        <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
-                            The WAR Session transforms productive ideas into actionable battle plans. This 7-step process helps you 
-                            evaluate opportunities, identify obstacles, and create measurable facts (action steps) to execute your vision.
-                        </p>
-                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
-                        <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
-                            <li>You have a new business or life idea to develop</li>
-                            <li>Need to turn inspiration into concrete action</li>
-                            <li>Want to evaluate if an opportunity is worth pursuing</li>
-                            <li>Ready to overcome obstacles and execute</li>
-                        </ul>
-                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
-                        <ul style="color: #ff6b6b; margin-left: 20px;">
-                            <li>✓ Clear evaluation of your idea's potential</li>
-                            <li>✓ Three specific, measurable action steps (FACTS)</li>
-                            <li>✓ Identified obstacles with solutions</li>
-                            <li>✓ Commitment to immediate execution</li>
-                        </ul>
-                    </div>
-                    
+                <!-- Step 5: Emotional Response -->
+                <div id="prayer-step-5" class="stack-step section-hidden">
                     <div class="question-prompt">
-                        <p><strong>What are you going to title this WAR/Idea Session?</strong></p>
+                        <p><strong>Describe the single word feelings that arise for you when you tell yourself that story?</strong></p>
                     </div>
-                    <textarea name="war_title" placeholder="Give your idea a powerful title..."></textarea>
+                    <textarea name="prayer_feelings" placeholder="Name your emotions (grateful, worried, excited, humble, etc.)..."></textarea>
                 </div>
 
-                <!-- DISCOVER SESSION -->
-            </div>
-
-            <div id="section-discover-stack" class="form-section section-hidden">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="discover-progress"></div>
-                </div>
-                
-                <div class="step-indicator">
-                    <h2>Discover Session</h2>
-                    <p>Step <span id="discover-step-number">1</span> of 5</p>
-                </div>
-
-                <div id="discover-step-1" class="stack-step">
-                    <div style="background: rgba(255, 193, 7, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
-                        <h3 style="color: #ffc107; margin-bottom: 15px;">🔍 Discovery Session Purpose</h3>
-                        <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
-                            The Discovery Session extracts wisdom from learning experiences and turns insights into practical application. 
-                            This 5-step process helps you capture revelations from books, training, conversations, or personal experiences.
-                        </p>
-                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
-                        <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
-                            <li>You've learned something significant from a book or course</li>
-                            <li>Had an important realization or "aha" moment</li>
-                            <li>Want to apply new knowledge to your life</li>
-                            <li>Need to process and integrate learning</li>
-                        </ul>
-                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
-                        <ul style="color: #ffc107; margin-left: 20px;">
-                            <li>✓ Clear articulation of your discovery</li>
-                            <li>✓ Understanding of why it matters to you</li>
-                            <li>✓ Practical application to your Core 4 domains</li>
-                            <li>✓ Immediate action steps to implement</li>
-                        </ul>
-                    </div>
-                    
+                <!-- Step 6: Want God to Know -->
+                <div id="prayer-step-6" class="stack-step section-hidden">
                     <div class="question-prompt">
-                        <p><strong>What are you going to title this Discovery Session?</strong></p>
+                        <p><strong>Complete this multiple times: "I want GOD to know..."</strong></p>
+                        <p style="color: #b8b8b8;">Keep going until you've shared everything on your heart.</p>
                     </div>
-                    <textarea name="discover_title" placeholder="Name this discovery session..."></textarea>
+                    <textarea name="prayer_want_god_know" style="min-height: 200px;" placeholder="I want GOD to know...
+I want GOD to know...
+I want GOD to know...
+I want GOD to know..."></textarea>
                 </div>
 
-                <!-- OPEN SESSION -->
-            </div>
-
-            <div id="section-open-stack" class="form-section section-hidden">
-                <div class="step-indicator">
-                    <h2>Open Session</h2>
-                    <p>Freestyle Format</p>
-                </div>
-
-                <div class="stack-step">
-                    <div style="background: rgba(156, 39, 176, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
-                        <h3 style="color: #9c27b0; margin-bottom: 15px;">🌟 Open Format Purpose</h3>
-                        <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
-                            The Open Format is your freestyle session for custom processing. This flexible approach lets you create 
-                            your own structure for reflection, analysis, or any situation that doesn't fit the other session types.
-                        </p>
-                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
-                        <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
-                            <li>Need a "Working/Not Working" analysis</li>
-                            <li>Want to do weekly or monthly reflection</li>
-                            <li>Creating custom gratitude or growth sessions</li>
-                            <li>Exploring something unique to your situation</li>
-                        </ul>
-                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>Popular Formats:</strong></p>
-                        <ul style="color: #9c27b0; margin-left: 20px;">
-                            <li>✓ Working/Not Working Analysis</li>
-                            <li>✓ Start/Stop/Continue Framework</li>
-                            <li>✓ Weekly Wins & Lessons</li>
-                            <li>✓ Gratitude and Growth Reflection</li>
-                            <li>✓ Core 4 Domain Review</li>
-                        </ul>
-                    </div>
-                    
+                <!-- Step 7: Prayer -->
+                <div id="prayer-step-7" class="stack-step section-hidden">
                     <div class="question-prompt">
-                        <p><strong>What are you going to title this Open Session?</strong></p>
+                        <p><strong>Dear GOD,</strong></p>
+                        <p style="color: #b8b8b8;">Speak directly to God. Express gratitude, ask for guidance, share concerns, seek strength.</p>
                     </div>
-                    <textarea name="open_title" placeholder="Name your freestyle session..."></textarea>
+                    <textarea name="prayer_to_god" style="min-height: 250px;" placeholder="Dear GOD..."></textarea>
+                </div>
+
+                <!-- Step 8: Life Lesson -->
+                <div id="prayer-step-8" class="stack-step section-hidden">
+                    <div class="question-prompt">
+                        <p><strong>What is the singular lesson on life you are taking from this prayer session?</strong></p>
+                    </div>
+                    <textarea name="prayer_lesson" placeholder="The key insight or principle I'm learning..."></textarea>
+                </div>
+
+                <!-- Step 9: Revelation & Commitment -->
+                <div id="prayer-step-9" class="stack-step section-hidden">
+                    <div class="question-prompt">
+                        <p><strong>What is the most significant revelation or insight you are leaving this prayer session with, and why do you feel that way?</strong></p>
+                    </div>
+                    <textarea name="prayer_revelation" placeholder="My divine insight or understanding..."></textarea>
                     
-                    <div class="question-prompt" style="margin-top: 30px;">
-                        <p><strong>Time to freestyle. Share your thoughts...</strong></p>
+                    <div class="question-prompt" style="margin-top: 20px;">
+                        <p><strong>What immediate actions are you committed to taking leaving this session?</strong></p>
                     </div>
-                    <textarea name="open_content" style="min-height: 400px;" placeholder="Express yourself freely..."></textarea>
+                    <textarea name="prayer_commitment" placeholder="I commit to..."></textarea>
                 </div>
 
                 <div class="button-group">
-                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
-                    <button type="button" class="btn-primary" onclick="completeSession('open')">Complete Session</button>
+                    <button type="button" class="btn-secondary" onclick="previousStep('prayer')" id="prayer-prev-btn" style="display: none;">Previous</button>
+                    <button type="button" class="btn-primary" onclick="nextStep('prayer')" id="prayer-next-btn">Next Step</button>
                 </div>
             </div>
 
@@ -849,7 +667,7 @@
             <div id="section-completion" class="form-section section-hidden">
                 <div class="completion-message">
                     <h2>🎉 Session Complete!</h2>
-                    <p>Your session has been recorded and will be processed.</p>
+                    <p>Your session has been recorded and sent to processing.</p>
                     <p>Thank you for taking the time to process and grow.</p>
                     
                     <div class="button-group" style="justify-content: center;">
@@ -936,6 +754,9 @@
                 currentStep[stack] = 1;
             });
 
+            // Load saved data
+            loadSavedData();
+
             // Stack card selection
             document.querySelectorAll('.stack-card').forEach(card => {
                 card.addEventListener('click', () => {
@@ -962,11 +783,36 @@
                     const section = document.getElementById(sectionId);
                     if (section) {
                         section.classList.remove('section-hidden');
+                        currentStep[currentStack] = 1;
+                        updateProgress(currentStack);
                         console.log(`Showing section: ${sectionId}`);
                     } else {
                         console.log(`ERROR: Section not found: ${sectionId}`);
                     }
                 }
+            });
+
+            // Auto-save all textareas
+            document.querySelectorAll('textarea').forEach(textarea => {
+                textarea.addEventListener('input', () => {
+                    localStorage.setItem(`stack_${textarea.name}`, textarea.value);
+                    updatePreviews();
+                    showSaveIndicator();
+                    console.log(`Saved: ${textarea.name}`);
+                });
+            });
+
+            // Auto-save all input fields
+            document.querySelectorAll('input, select').forEach(input => {
+                const savedValue = localStorage.getItem(`stack_${input.name}`);
+                if (savedValue) {
+                    input.value = savedValue;
+                }
+                
+                input.addEventListener('change', () => {
+                    localStorage.setItem(`stack_${input.name}`, input.value);
+                    showSaveIndicator();
+                });
             });
 
             console.log('Initialization complete');
@@ -1004,6 +850,213 @@
         function showManualEntry() {
             document.getElementById('manual-entry-form').style.display = 'block';
             document.getElementById('logged-in-display').style.display = 'none';
+        }
+
+        function showSaveIndicator() {
+            const indicator = document.getElementById('saveIndicator');
+            indicator.classList.add('show');
+            
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const footerSave = document.getElementById('footerLastSave');
+            if (footerSave) {
+                footerSave.textContent = 'Last saved: ' + timeString;
+            }
+            
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+
+        function loadSavedData() {
+            console.log('Loading saved data from localStorage');
+            let loadedCount = 0;
+            document.querySelectorAll('textarea').forEach(textarea => {
+                const savedValue = localStorage.getItem(`stack_${textarea.name}`);
+                if (savedValue) {
+                    textarea.value = savedValue;
+                    loadedCount++;
+                }
+            });
+            console.log(`Loaded ${loadedCount} saved fields`);
+        }
+
+        function updatePreviews() {
+            document.querySelectorAll('.previous-answer').forEach(span => {
+                const id = span.id;
+                if (!id) return;
+                
+                const fieldName = id.replace('-preview', '').replace(/-/g, '_');
+                const sourceTextarea = document.querySelector(`textarea[name="${fieldName}"]`);
+                
+                if (sourceTextarea && sourceTextarea.value) {
+                    const preview = sourceTextarea.value.substring(0, 100);
+                    span.textContent = preview + (sourceTextarea.value.length > 100 ? '...' : '');
+                }
+            });
+        }
+
+        function updateProgress(stackType) {
+            const progress = (currentStep[stackType] / stackConfigs[stackType].steps) * 100;
+            const progressBar = document.getElementById(`${stackType}-progress`);
+            if (progressBar) {
+                progressBar.style.width = `${progress}%`;
+                console.log(`Progress for ${stackType}: ${progress.toFixed(1)}%`);
+            }
+        }
+
+        function updateStepNumber(stackType) {
+            const stepNumber = document.getElementById(`${stackType}-step-number`);
+            if (stepNumber) {
+                stepNumber.textContent = currentStep[stackType];
+            }
+        }
+
+        function nextStep(stackType) {
+            console.log(`Next step for ${stackType}: ${currentStep[stackType]} -> ${currentStep[stackType] + 1}`);
+            const maxSteps = stackConfigs[stackType].steps;
+            
+            if (currentStep[stackType] < maxSteps) {
+                // Hide current step
+                const currentStepElement = document.getElementById(`${stackType}-step-${currentStep[stackType]}`);
+                if (currentStepElement) {
+                    currentStepElement.classList.add('section-hidden');
+                }
+                
+                // Move to next step
+                currentStep[stackType]++;
+                
+                // Show next step
+                const nextStepElement = document.getElementById(`${stackType}-step-${currentStep[stackType]}`);
+                if (nextStepElement) {
+                    nextStepElement.classList.remove('section-hidden');
+                }
+                
+                // Show Previous button after step 1
+                const prevBtn = document.getElementById(`${stackType}-prev-btn`);
+                if (prevBtn && currentStep[stackType] > 1) {
+                    prevBtn.style.display = 'block';
+                }
+                
+                updateProgress(stackType);
+                updateStepNumber(stackType);
+                updatePreviews();
+                
+                // Update button for last step
+                if (currentStep[stackType] === maxSteps) {
+                    const nextBtn = document.getElementById(`${stackType}-next-btn`);
+                    if (nextBtn) {
+                        nextBtn.textContent = 'Complete Session';
+                        nextBtn.onclick = () => completeStack(stackType);
+                    }
+                }
+            }
+        }
+
+        function previousStep(stackType) {
+            console.log(`Previous step for ${stackType}: ${currentStep[stackType]} -> ${currentStep[stackType] - 1}`);
+            
+            if (currentStep[stackType] > 1) {
+                // Hide current step
+                const currentStepElement = document.getElementById(`${stackType}-step-${currentStep[stackType]}`);
+                if (currentStepElement) {
+                    currentStepElement.classList.add('section-hidden');
+                }
+                
+                // Move to previous step
+                currentStep[stackType]--;
+                
+                // Show previous step
+                const prevStepElement = document.getElementById(`${stackType}-step-${currentStep[stackType]}`);
+                if (prevStepElement) {
+                    prevStepElement.classList.remove('section-hidden');
+                }
+                
+                // Hide Previous button if back at step 1
+                const prevBtn = document.getElementById(`${stackType}-prev-btn`);
+                if (prevBtn && currentStep[stackType] === 1) {
+                    prevBtn.style.display = 'none';
+                }
+                
+                updateProgress(stackType);
+                updateStepNumber(stackType);
+                
+                // Reset button text
+                const nextBtn = document.getElementById(`${stackType}-next-btn`);
+                if (nextBtn && currentStep[stackType] < stackConfigs[stackType].steps) {
+                    nextBtn.textContent = 'Next Step';
+                    nextBtn.onclick = () => nextStep(stackType);
+                }
+            }
+        }
+
+        function completeStack(stackType) {
+            console.log(`Completing ${stackType} session`);
+            
+            // Collect all data
+            const formData = new FormData(document.getElementById('stack-form'));
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Form data collected:', Object.keys(data));
+            
+            // WEBHOOK SUBMISSION
+            submitToWebhook(data);
+            
+            // Show completion
+            document.getElementById(`section-${stackConfigs[stackType].section}`).classList.add('section-hidden');
+            document.getElementById('section-completion').classList.remove('section-hidden');
+            
+            // Clear localStorage for this stack
+            clearStackData(stackType);
+        }
+
+        function submitToWebhook(data) {
+            // CRITICAL: This is your webhook URL
+            const webhookUrl = 'https://n8n-production-3280.up.railway.app/webhook/stack-form-submit';
+            console.log(`WEBHOOK: Submitting to ${webhookUrl}`);
+            
+            // Add metadata
+            const payload = {
+                ...data,
+                timestamp: new Date().toISOString(),
+                user_id: localStorage.getItem('coaching_user_email') || 'web_form_user',
+                session_type: currentStack
+            };
+            
+            console.log('WEBHOOK: Sending payload with session_type:', payload.session_type);
+            
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                console.log('WEBHOOK: Response status:', response.status);
+                if (response.ok) {
+                    console.log('WEBHOOK: Session submitted successfully');
+                } else {
+                    console.error('WEBHOOK: Error response:', response.status);
+                }
+                return response.text();
+            })
+            .then(text => {
+                console.log('WEBHOOK: Response text:', text);
+            })
+            .catch(error => {
+                console.error('WEBHOOK ERROR: Failed to submit session:', error);
+            });
+        }
+
+        function clearStackData(stackType) {
+            console.log(`Clearing saved data for ${stackType}`);
+            document.querySelectorAll(`textarea[name^="${stackType}_"]`).forEach(textarea => {
+                localStorage.removeItem(`stack_${textarea.name}`);
+            });
         }
 
         function validateRequiredFields() {
@@ -1048,24 +1101,11 @@
             document.getElementById('section-stack-selection').classList.remove('section-hidden');
         }
 
-        function completeSession(sessionType) {
-            console.log(`Completing ${sessionType} session`);
-            
-            // Hide current section
-            document.getElementById(`section-${stackConfigs[sessionType].section}`).classList.add('section-hidden');
-            
-            // Show completion
-            document.getElementById('section-completion').classList.remove('section-hidden');
-        }
-
         function selectStackType(stackType) {
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
             
-            // Deselect all cards
             document.querySelectorAll('.stack-card').forEach(c => c.classList.remove('selected'));
             
-            // Select the specific card
             const targetCard = document.querySelector(`[data-stack="${stackType}"]`);
             if (targetCard) {
                 targetCard.classList.add('selected');
@@ -1091,12 +1131,30 @@
             // Clear textareas
             document.querySelectorAll('textarea').forEach(t => {
                 t.value = '';
+                localStorage.removeItem(`stack_${t.name}`);
+            });
+            
+            // Reset all steps
+            document.querySelectorAll('.stack-step').forEach((step, index) => {
+                if (step.id.endsWith('-step-1')) {
+                    step.classList.remove('section-hidden');
+                } else {
+                    step.classList.add('section-hidden');
+                }
+            });
+            
+            // Reset progress bars
+            document.querySelectorAll('.progress-fill').forEach(bar => {
+                bar.style.width = '0%';
             });
             
             // Show selection screen
             document.getElementById('section-completion').classList.add('section-hidden');
             document.getElementById('section-stack-selection').classList.remove('section-hidden');
         }
+
+        // NOTE: Add the other session sections (gratitude, happy, angry, war, discover, open)
+        // with all their steps here following the same pattern as the Prayer session
     </script>
 </body>
 </html>
