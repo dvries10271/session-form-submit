@@ -363,6 +363,11 @@
             font-size: 0.85rem;
         }
 
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .back-button {
@@ -532,7 +537,7 @@
                 </div>
             </div>
 
-            <!-- PRAYER SESSION PLACEHOLDER -->
+            <!-- PRAYER SESSION -->
             <div id="section-prayer-stack" class="form-section section-hidden">
                 <div class="progress-bar">
                     <div class="progress-fill" id="prayer-progress"></div>
@@ -544,11 +549,32 @@
                 </div>
 
                 <div id="prayer-step-1" class="stack-step">
-                    <div class="question-prompt">
-                        <p><strong>Prayer Session - Step 1</strong></p>
-                        <p>This is a placeholder. Add your complete prayer session content here.</p>
+                    <div style="background: rgba(78, 205, 196, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                        <h3 style="color: #4ecdc4; margin-bottom: 15px;">🙏 Prayer Session Purpose</h3>
+                        <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
+                            The Prayer Session is designed to deepen your spiritual connection and align your actions with divine purpose. 
+                            This 9-step process helps you move from confusion to clarity through prayer and revelation.
+                        </p>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
+                        <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
+                            <li>Facing difficult decisions requiring divine guidance</li>
+                            <li>Feeling disconnected from your spiritual purpose</li>
+                            <li>Needing strength to overcome challenges</li>
+                            <li>Expressing gratitude and seeking direction</li>
+                        </ul>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
+                        <ul style="color: #4ecdc4; margin-left: 20px;">
+                            <li>✓ Clear divine insight or revelation</li>
+                            <li>✓ Renewed spiritual connection</li>
+                            <li>✓ Specific action steps aligned with your soul purpose</li>
+                            <li>✓ Peace and clarity about your situation</li>
+                        </ul>
                     </div>
-                    <textarea name="prayer_1" placeholder="Prayer session content..."></textarea>
+                    
+                    <div class="question-prompt">
+                        <p><strong>What are you going to title this prayer session?</strong></p>
+                    </div>
+                    <textarea name="prayer_title" placeholder="Give this prayer session a meaningful title..."></textarea>
                 </div>
 
                 <div class="button-group">
@@ -557,7 +583,7 @@
                 </div>
             </div>
 
-            <!-- GRATITUDE SESSION PLACEHOLDER -->
+            <!-- GRATITUDE SESSION -->
             <div id="section-gratitude-stack" class="form-section section-hidden">
                 <div class="progress-bar">
                     <div class="progress-fill" id="gratitude-progress"></div>
@@ -569,11 +595,32 @@
                 </div>
 
                 <div id="gratitude-step-1" class="stack-step">
-                    <div class="question-prompt">
-                        <p><strong>Gratitude Session - Step 1</strong></p>
-                        <p>This is a placeholder. Add your complete gratitude session content here.</p>
+                    <div style="background: rgba(255, 215, 0, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                        <h3 style="color: #ffd700; margin-bottom: 15px;">💛 Gratitude Session Purpose</h3>
+                        <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
+                            The Gratitude Session lifts your spirit, allows you to see your progression, and improves relationships 
+                            across all Core 4 areas. It helps you appreciate what you have and transforms challenges into growth opportunities.
+                        </p>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
+                        <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
+                            <li>You want to acknowledge progress and wins</li>
+                            <li>Someone has positively impacted your life</li>
+                            <li>You need to shift perspective on challenges</li>
+                            <li>Celebrating milestones or achievements</li>
+                        </ul>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
+                        <ul style="color: #ffd700; margin-left: 20px;">
+                            <li>✓ Elevated emotional state</li>
+                            <li>✓ Deeper appreciation for your journey</li>
+                            <li>✓ Strengthened relationships</li>
+                            <li>✓ Renewed energy and motivation</li>
+                        </ul>
                     </div>
-                    <textarea name="gratitude_1" placeholder="Gratitude session content..."></textarea>
+                    
+                    <div class="question-prompt">
+                        <p><strong>What are you going to title this Gratitude Session?</strong></p>
+                    </div>
+                    <textarea name="gratitude_title" placeholder="Give this gratitude session a meaningful title..."></textarea>
                 </div>
 
                 <div class="button-group">
@@ -582,7 +629,7 @@
                 </div>
             </div>
 
-            <!-- HAPPY SESSION PLACEHOLDER -->
+            <!-- HAPPY SESSION -->
             <div id="section-happy-stack" class="form-section section-hidden">
                 <div class="progress-bar">
                     <div class="progress-fill" id="happy-progress"></div>
@@ -594,20 +641,37 @@
                 </div>
 
                 <div id="happy-step-1" class="stack-step">
-                    <div class="question-prompt">
-                        <p><strong>Happy Session - Step 1</strong></p>
-                        <p>This is a placeholder. Add your complete happy session content here.</p>
+                    <div style="background: rgba(76, 175, 80, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                        <h3 style="color: #4caf50; margin-bottom: 15px;">😊 Celebration Session Purpose</h3>
+                        <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
+                            The Celebration Session helps you celebrate wins and extract wisdom from positive experiences. This 8-step process 
+                            ensures you learn from success, maintain momentum, and amplify what's working in your life.
+                        </p>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
+                        <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
+                            <li>You've achieved a win or breakthrough</li>
+                            <li>Something wonderful has happened</li>
+                            <li>Want to maintain positive momentum</li>
+                            <li>Need to remind yourself of your progress</li>
+                        </ul>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
+                        <ul style="color: #4caf50; margin-left: 20px;">
+                            <li>✓ Deep appreciation of your success</li>
+                            <li>✓ Clear understanding of what created the win</li>
+                            <li>✓ Lessons to replicate success</li>
+                            <li>✓ Renewed energy and motivation</li>
+                        </ul>
                     </div>
-                    <textarea name="happy_1" placeholder="Happy session content..."></textarea>
+                    
+                    <div class="question-prompt">
+                        <p><strong>What are you going to title this Celebration Session?</strong></p>
+                    </div>
+                    <textarea name="happy_title" placeholder="Name this celebration..."></textarea>
                 </div>
 
-                <div class="button-group">
-                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
-                    <button type="button" class="btn-primary" onclick="completeSession('happy')">Complete Session</button>
-                </div>
+                <!-- ANGRY SESSION -->
             </div>
 
-            <!-- ANGRY SESSION PLACEHOLDER -->
             <div id="section-angry-stack" class="form-section section-hidden">
                 <div class="progress-bar">
                     <div class="progress-fill" id="angry-progress"></div>
@@ -619,20 +683,37 @@
                 </div>
 
                 <div id="angry-step-1" class="stack-step">
-                    <div class="question-prompt">
-                        <p><strong>Angry Session - Step 1</strong></p>
-                        <p>This is a placeholder. Add your complete angry session content here.</p>
+                    <div style="background: rgba(244, 67, 54, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                        <h3 style="color: #f44336; margin-bottom: 15px;">😤 Anger Processing Purpose</h3>
+                        <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
+                            The Anger Processing session transforms rage and irritation into strategic action. This 8-step process helps you 
+                            process negative emotions, separate facts from feelings, and create empowering narratives that serve your goals.
+                        </p>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
+                        <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
+                            <li>Someone or something has triggered your anger</li>
+                            <li>Feeling frustrated and need clarity</li>
+                            <li>Want to convert destructive emotions into productive action</li>
+                            <li>Need to reframe a situation strategically</li>
+                        </ul>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
+                        <ul style="color: #f44336; margin-left: 20px;">
+                            <li>✓ Release of emotional charge</li>
+                            <li>✓ Clear distinction between facts and feelings</li>
+                            <li>✓ New empowering story that serves you</li>
+                            <li>✓ Strategic action plan from a place of power</li>
+                        </ul>
                     </div>
-                    <textarea name="angry_1" placeholder="Angry session content..."></textarea>
+                    
+                    <div class="question-prompt">
+                        <p><strong>What are you going to title this processing session?</strong></p>
+                    </div>
+                    <textarea name="angry_title" placeholder="Name this processing session..."></textarea>
                 </div>
 
-                <div class="button-group">
-                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
-                    <button type="button" class="btn-primary" onclick="completeSession('angry')">Complete Session</button>
-                </div>
+                <!-- WAR SESSION -->
             </div>
 
-            <!-- WAR SESSION PLACEHOLDER -->
             <div id="section-war-stack" class="form-section section-hidden">
                 <div class="progress-bar">
                     <div class="progress-fill" id="war-progress"></div>
@@ -644,20 +725,37 @@
                 </div>
 
                 <div id="war-step-1" class="stack-step">
-                    <div class="question-prompt">
-                        <p><strong>War/Action Session - Step 1</strong></p>
-                        <p>This is a placeholder. Add your complete war session content here.</p>
+                    <div style="background: rgba(255, 107, 107, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                        <h3 style="color: #ff6b6b; margin-bottom: 15px;">⚔️ WAR/Idea Session Purpose</h3>
+                        <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
+                            The WAR Session transforms productive ideas into actionable battle plans. This 7-step process helps you 
+                            evaluate opportunities, identify obstacles, and create measurable facts (action steps) to execute your vision.
+                        </p>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
+                        <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
+                            <li>You have a new business or life idea to develop</li>
+                            <li>Need to turn inspiration into concrete action</li>
+                            <li>Want to evaluate if an opportunity is worth pursuing</li>
+                            <li>Ready to overcome obstacles and execute</li>
+                        </ul>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
+                        <ul style="color: #ff6b6b; margin-left: 20px;">
+                            <li>✓ Clear evaluation of your idea's potential</li>
+                            <li>✓ Three specific, measurable action steps (FACTS)</li>
+                            <li>✓ Identified obstacles with solutions</li>
+                            <li>✓ Commitment to immediate execution</li>
+                        </ul>
                     </div>
-                    <textarea name="war_1" placeholder="War session content..."></textarea>
+                    
+                    <div class="question-prompt">
+                        <p><strong>What are you going to title this WAR/Idea Session?</strong></p>
+                    </div>
+                    <textarea name="war_title" placeholder="Give your idea a powerful title..."></textarea>
                 </div>
 
-                <div class="button-group">
-                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
-                    <button type="button" class="btn-primary" onclick="completeSession('war')">Complete Session</button>
-                </div>
+                <!-- DISCOVER SESSION -->
             </div>
 
-            <!-- DISCOVER SESSION PLACEHOLDER -->
             <div id="section-discover-stack" class="form-section section-hidden">
                 <div class="progress-bar">
                     <div class="progress-fill" id="discover-progress"></div>
@@ -669,20 +767,37 @@
                 </div>
 
                 <div id="discover-step-1" class="stack-step">
-                    <div class="question-prompt">
-                        <p><strong>Discover Session - Step 1</strong></p>
-                        <p>This is a placeholder. Add your complete discover session content here.</p>
+                    <div style="background: rgba(255, 193, 7, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">🔍 Discovery Session Purpose</h3>
+                        <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
+                            The Discovery Session extracts wisdom from learning experiences and turns insights into practical application. 
+                            This 5-step process helps you capture revelations from books, training, conversations, or personal experiences.
+                        </p>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
+                        <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
+                            <li>You've learned something significant from a book or course</li>
+                            <li>Had an important realization or "aha" moment</li>
+                            <li>Want to apply new knowledge to your life</li>
+                            <li>Need to process and integrate learning</li>
+                        </ul>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>Expected Outcomes:</strong></p>
+                        <ul style="color: #ffc107; margin-left: 20px;">
+                            <li>✓ Clear articulation of your discovery</li>
+                            <li>✓ Understanding of why it matters to you</li>
+                            <li>✓ Practical application to your Core 4 domains</li>
+                            <li>✓ Immediate action steps to implement</li>
+                        </ul>
                     </div>
-                    <textarea name="discover_1" placeholder="Discover session content..."></textarea>
+                    
+                    <div class="question-prompt">
+                        <p><strong>What are you going to title this Discovery Session?</strong></p>
+                    </div>
+                    <textarea name="discover_title" placeholder="Name this discovery session..."></textarea>
                 </div>
 
-                <div class="button-group">
-                    <button type="button" class="btn-secondary" onclick="backToSelection()">Back to Selection</button>
-                    <button type="button" class="btn-primary" onclick="completeSession('discover')">Complete Session</button>
-                </div>
+                <!-- OPEN SESSION -->
             </div>
 
-            <!-- OPEN SESSION -->
             <div id="section-open-stack" class="form-section section-hidden">
                 <div class="step-indicator">
                     <h2>Open Session</h2>
@@ -690,6 +805,29 @@
                 </div>
 
                 <div class="stack-step">
+                    <div style="background: rgba(156, 39, 176, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                        <h3 style="color: #9c27b0; margin-bottom: 15px;">🌟 Open Format Purpose</h3>
+                        <p style="color: #b8b8b8; line-height: 1.6; margin-bottom: 15px;">
+                            The Open Format is your freestyle session for custom processing. This flexible approach lets you create 
+                            your own structure for reflection, analysis, or any situation that doesn't fit the other session types.
+                        </p>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>You'll use this when:</strong></p>
+                        <ul style="color: #b8b8b8; margin-left: 20px; margin-bottom: 15px;">
+                            <li>Need a "Working/Not Working" analysis</li>
+                            <li>Want to do weekly or monthly reflection</li>
+                            <li>Creating custom gratitude or growth sessions</li>
+                            <li>Exploring something unique to your situation</li>
+                        </ul>
+                        <p style="color: #ffffff; margin-bottom: 10px;"><strong>Popular Formats:</strong></p>
+                        <ul style="color: #9c27b0; margin-left: 20px;">
+                            <li>✓ Working/Not Working Analysis</li>
+                            <li>✓ Start/Stop/Continue Framework</li>
+                            <li>✓ Weekly Wins & Lessons</li>
+                            <li>✓ Gratitude and Growth Reflection</li>
+                            <li>✓ Core 4 Domain Review</li>
+                        </ul>
+                    </div>
+                    
                     <div class="question-prompt">
                         <p><strong>What are you going to title this Open Session?</strong></p>
                     </div>
@@ -729,11 +867,45 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Transformation Sessions</h4>
-                <p>Structured processing frameworks to transform thoughts into action.</p>
+                <p>Structured processing frameworks to transform thoughts into action and extract wisdom from every experience.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="https://dvries10271.github.io/Coaching_Command_Center/">Main Dashboard</a></li>
+                    <li><a href="https://dvries10271.github.io/Analytics-Dashboard/">Analytics Dashboard</a></li>
+                    <li><a href="https://dvries10271.github.io/Action-Command-Center/">Action Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Session Types</h4>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="selectStackType('prayer'); return false;">Prayer Session</a></li>
+                    <li><a href="#" onclick="selectStackType('gratitude'); return false;">Gratitude Session</a></li>
+                    <li><a href="#" onclick="selectStackType('happy'); return false;">Happy Session</a></li>
+                    <li><a href="#" onclick="selectStackType('angry'); return false;">Anger Processing</a></li>
+                    <li><a href="#" onclick="selectStackType('war'); return false;">War/Action Session</a></li>
+                    <li><a href="#" onclick="selectStackType('discover'); return false;">Discovery Session</a></li>
+                    <li><a href="#" onclick="selectStackType('open'); return false;">Open Format</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>System Status</h4>
+                <div class="status-info" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; margin-bottom: 0.5rem;">
+                    <span class="status-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #4caf50; animation: pulse 2s infinite;"></span>
+                    <span>Session Module Active</span>
+                </div>
+                <div style="color: rgba(255, 255, 255, 0.5); font-size: 0.85rem;">
+                    Auto-save: Enabled
+                </div>
+                <div style="color: rgba(255, 255, 255, 0.5); font-size: 0.85rem;" id="footerLastSave">
+                    Last saved: Never
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 Coaching Command Center. Built With Purpose.</p>
+            <p>© 2025 Lead Generation Experts LLC Coaching System. Built With Purpose. All Rights Reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem; color: rgba(255, 255, 255, 0.3);">Transformation Sessions v2.0 | Enhanced September 2025</p>
         </div>
     </footer>
 
@@ -884,6 +1056,24 @@
             
             // Show completion
             document.getElementById('section-completion').classList.remove('section-hidden');
+        }
+
+        function selectStackType(stackType) {
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Deselect all cards
+            document.querySelectorAll('.stack-card').forEach(c => c.classList.remove('selected'));
+            
+            // Select the specific card
+            const targetCard = document.querySelector(`[data-stack="${stackType}"]`);
+            if (targetCard) {
+                targetCard.classList.add('selected');
+                currentStack = stackType;
+                document.getElementById('selected-stack').value = stackType;
+                document.getElementById('start-stack-btn').disabled = false;
+                console.log(`Selected stack via footer: ${stackType}`);
+            }
         }
 
         function startNewSession() {
